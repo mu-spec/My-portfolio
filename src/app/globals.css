@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Design tokens — dark premium system
+   Single source of truth. Consumed by Tailwind v4 utilities (@theme inline).
+   ========================================================================== */
+
+@theme {
+  /* Surfaces: near-black base, progressively elevated charcoals */
+  --color-base: #08090b;
+  --color-surface: #0d0f13;
+  --color-elevated: #14171d;
+  --color-overlay: #1b1f27;
+
+  /* Hairline borders */
+  --color-line: #1e222b;
+  --color-line-strong: #2a303b;
+
+  /* Typography scale of neutrals — high contrast primary, calm secondary */
+  --color-ink: #f2f4f8;
+  --color-ink-muted: #a8b0bf;
+  --color-ink-subtle: #6d7686;
+
+  /* Single restrained accent — desaturated electric blue */
+  --color-accent: #3d7dfa;
+  --color-accent-hover: #5590fb;
+  --color-accent-soft: rgb(61 125 250 / 0.12);
+  --color-focus: #7aa8ff;
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Fluid type scale — scales naturally from mobile to large desktop */
+  --text-display: clamp(2.75rem, 1.6rem + 5.2vw, 6rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.035em;
+
+  --text-h1: clamp(2.25rem, 1.5rem + 3.4vw, 4rem);
+  --text-h1--line-height: 1.05;
+  --text-h1--letter-spacing: -0.03em;
+
+  --text-h2: clamp(1.75rem, 1.3rem + 2vw, 2.75rem);
+  --text-h2--line-height: 1.12;
+  --text-h2--letter-spacing: -0.025em;
+
+  --text-h3: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.015em;
+
+  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.65;
+
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.16em;
+
+  /* Layout rhythm */
+  --spacing-gutter: 1.25rem;
+  --spacing-section: clamp(4.5rem, 3rem + 7vw, 9rem);
+
+  /* Restrained radii — never pill-shaped, never cartoonish */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==========================================================================
+   Base layer
+   ========================================================================== */
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-base);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Visible, consistent focus for every keyboard-reachable control */
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+  }
+
+  /* Only remove the ring for pointer users, never for keyboard users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+
+  /* Respect the OS-level reduced-motion preference globally */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   Reusable composites
+   ========================================================================== */
+
+@utility hairline-top {
+  /* Soft top hairline used to separate large regions without a hard rule */
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--color-line-strong) 20%,
+    var(--color-line-strong) 80%,
+    transparent
+  );
+}
