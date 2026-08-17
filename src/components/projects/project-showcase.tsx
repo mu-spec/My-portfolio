@@ -64,7 +64,7 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
             <DeviceFrame
               media={supporting}
               sizes={sizes}
-              className="absolute left-[4%] top-[26%] z-10 w-[34%] rotate-[-4deg]"
+              className="absolute left-[0%] top-[21%] z-10 w-[39%] rotate-[-4deg]"
             />
           ) : null}
 
@@ -73,7 +73,7 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
             <DeviceFrame
               media={secondary}
               sizes={sizes}
-              className="absolute left-[31%] top-[15%] z-20 w-[36%] rotate-[-4deg]"
+              className="absolute left-[30%] top-[11%] z-20 w-[41%] rotate-[-4deg]"
             />
           ) : null}
 
@@ -82,7 +82,7 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
             media={primary}
             sizes={sizes}
             priority
-            className="absolute left-[58%] top-[3%] z-30 w-[38%] rotate-[-4deg]"
+            className="absolute left-[57%] top-[1%] z-30 w-[43%] rotate-[-4deg]"
           />
         </>
       ) : (
@@ -92,7 +92,7 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
             <DeviceFrame
               media={supporting}
               sizes={sizes}
-              className="absolute left-[1%] top-[20%] z-10 w-[37%] rotate-[-8deg]"
+              className="absolute left-[0%] top-[15%] z-10 w-[41%] rotate-[-8deg]"
             />
           ) : null}
 
@@ -101,7 +101,7 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
             <DeviceFrame
               media={secondary}
               sizes={sizes}
-              className="absolute right-[1%] top-[20%] z-10 w-[37%] rotate-[8deg]"
+              className="absolute right-[0%] top-[15%] z-10 w-[41%] rotate-[8deg]"
             />
           ) : null}
 
@@ -110,7 +110,7 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
             media={primary}
             sizes={sizes}
             priority
-            className="absolute left-1/2 top-[2%] z-30 w-[41%] -translate-x-1/2"
+            className="absolute left-1/2 top-[1%] z-30 w-[46%] -translate-x-1/2"
           />
         </>
       )}

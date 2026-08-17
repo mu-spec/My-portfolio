@@ -21,8 +21,17 @@ interface DistributionActionProps {
    * explicit, since the visible label alone may not.
    */
   pendingAriaLabel: string;
-  /** Adds the download attribute for file destinations. */
+  /**
+   * Marks the destination as a file download. Adds the `download` attribute
+   * and keeps navigation in the same tab: the server responds with
+   * Content-Disposition: attachment, so the page is never actually left.
+   */
   download?: boolean;
+  /**
+   * Opens the destination in a new tab. Used for external site navigation
+   * (e.g. a store listing) rather than for file downloads.
+   */
+  newTab?: boolean;
   /** Small trailing detail, e.g. "v1.0.0 · 24 MB". */
   detail?: string;
   className?: string;
@@ -51,6 +60,7 @@ export function DistributionAction({
   pendingLabel,
   pendingAriaLabel,
   download = false,
+  newTab = false,
   detail,
   className,
 }: DistributionActionProps) {
@@ -75,15 +85,17 @@ export function DistributionAction({
     );
   }
 
-  const external = /^https?:\/\//.test(href);
-
+  // A plain anchor: no JavaScript is involved in the download, so it works
+  // with scripting disabled and stays fully keyboard accessible.
   return (
     <a
       href={href}
       aria-label={ariaLabel}
+      // Ignored by browsers for cross-origin URLs; the release host sends
+      // Content-Disposition: attachment, which is what forces the download.
       download={download || undefined}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noreferrer noopener" : undefined}
+      target={newTab ? "_blank" : undefined}
+      rel={newTab ? "noreferrer noopener" : undefined}
       className={cn(
         base,
         "border-line-strong bg-elevated text-ink",

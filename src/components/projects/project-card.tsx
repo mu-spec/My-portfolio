@@ -49,14 +49,15 @@ export function ProjectCard({
         "lg:grid lg:items-center",
         // The flagship carries three actions, so its text column gets more
         // room to keep them on one row at wide sizes.
-        emphasis ? "lg:grid-cols-[1.15fr_1fr]" : "lg:grid-cols-[1.05fr_1fr]",
+        emphasis ? "lg:grid-cols-[1.3fr_1fr]" : "lg:grid-cols-[1.25fr_1fr]",
         className,
       )}
     >
       <div
         className={cn(
-          "p-6 pb-0 lg:pb-6",
-          emphasis ? "sm:p-8 sm:pb-0 lg:sm:pb-8" : "sm:p-8 sm:pb-0 lg:sm:pb-8",
+          // Tighter than the text column: the composition already carries its
+          // own internal margin, so heavy padding only shrinks the screens.
+          "p-5 pb-0 sm:p-6 sm:pb-0 lg:p-6",
         )}
       >
         <ProjectShowcase project={project} />

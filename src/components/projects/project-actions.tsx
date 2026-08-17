@@ -73,8 +73,8 @@ export function ProjectActions({
           for a direct download. */}
       <DistributionAction
         label="Download APK"
-        ariaLabel={`Download the ${name} Android APK${
-          apkDetail ? ` (${apkDetail})` : ""
+        ariaLabel={`Download the ${name} Android APK file${
+          apkDetail ? `, ${apkDetail.replace(" · ", ", ")}` : ""
         }`}
         pendingLabel="Download APK"
         pendingAriaLabel={`Download the ${name} Android APK — link coming soon`}
@@ -96,6 +96,7 @@ export function ProjectActions({
           }
           icon={<GooglePlayIcon />}
           href={googlePlay.status === "available" ? googlePlay.url : undefined}
+          newTab
         />
       ) : null}
     </div>

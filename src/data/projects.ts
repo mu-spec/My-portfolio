@@ -21,10 +21,11 @@ import type { Project, ProjectSlug } from "@/types/project";
  * public production release and must never be presented as one.
  *
  * APK RULE: `apk` is the single place a downloadable Android build is
- * configured. Every entry is currently `{ status: "awaiting-url" }` because
- * no verified download URL has been supplied yet. To publish one, change that
- * entry to `{ status: "available", url: "..." }` — no component changes are
- * needed. Never substitute a placeholder, "#" or a repository URL.
+ * configured. Both entries now carry verified direct release-asset URLs that
+ * serve the compiled .apk binary. These are DOWNLOAD endpoints only — they
+ * are not repository, source-browsing or clone URLs, and no application
+ * source is reachable through them. Never substitute a placeholder, "#" or a
+ * repository URL.
  *
  * CONTENT RULE: only verified facts are recorded. Names are confirmed.
  * Taglines, summaries, technologies, highlights and media are intentionally
@@ -63,8 +64,21 @@ export const projects: readonly Project[] = [
       },
     ],
     caseStudyHref: "/work/electrician-simulator-app",
-    apk: { status: "awaiting-url" },
-    googlePlay: { track: "testing", status: "awaiting-url" },
+    apk: {
+      status: "available",
+      // Direct release asset. This is a compiled binary download, NOT a
+      // source repository — visitors never reach any application source.
+      url: "https://github.com/mu-spec/app-releases/releases/download/electrician-v1.0.0/Electrician-Simulator-App-v1.0.0.apk",
+      version: "1.0.0",
+      fileSizeLabel: "35.6 MB",
+    },
+    // Testing track, not a public production release. The action label and
+    // the `track` value both keep that distinction explicit.
+    googlePlay: {
+      track: "testing",
+      status: "available",
+      url: "https://play.google.com/store/apps/details?id=com.koreappstek.ElectricianSimulatorApp",
+    },
     order: 1,
   },
   {
@@ -97,7 +111,14 @@ export const projects: readonly Project[] = [
       },
     ],
     caseStudyHref: "/work/mobile-cleaner",
-    apk: { status: "awaiting-url" },
+    apk: {
+      status: "available",
+      // Direct release asset — a compiled binary, not a source repository.
+      url: "https://github.com/mu-spec/app-releases/releases/download/mobile-cleaner-v1.0.0/Mobile-Cleaner-v1.0.0.apk",
+      version: "1.0.0",
+      fileSizeLabel: "18.3 MB",
+    },
+    // No Google Play listing exists, so no Play control is rendered.
     googlePlay: { track: "none" },
     order: 2,
   },
