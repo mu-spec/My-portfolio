@@ -21,6 +21,14 @@
  */
 export type ProjectSlug = "electrician-simulator-app" | "mobile-cleaner";
 
+/**
+ * Optional lifecycle label.
+ *
+ * Only set when the state is verified AND adds information the distribution
+ * actions do not already convey. A project on a Google Play testing track,
+ * for example, is described precisely by its "Google Play — Testing" action,
+ * so a generic badge alongside it would be redundant and less accurate.
+ */
 export type ProjectStatus = "in-development" | "in-testing" | "released";
 
 /**
@@ -122,7 +130,7 @@ export interface Project {
   summary: string;
   /** Marks the single flagship project for emphasis in the showcase. */
   featured: boolean;
-  status: ProjectStatus;
+  status?: ProjectStatus;
   /** Verified technologies only. Left empty in P0 rather than guessed. */
   technologies: readonly string[];
   /** Verified feature highlights only. Left empty in P0 rather than guessed. */

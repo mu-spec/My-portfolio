@@ -76,7 +76,8 @@ export function ProjectActions({
         ariaLabel={`Download the ${name} Android APK${
           apkDetail ? ` (${apkDetail})` : ""
         }`}
-        pendingLabel="APK coming soon"
+        pendingLabel="Download APK"
+        pendingAriaLabel={`Download the ${name} Android APK — link coming soon`}
         icon={<DownloadIcon />}
         href={apk.status === "available" ? apk.url : undefined}
         detail={apkDetail || undefined}
@@ -87,10 +88,11 @@ export function ProjectActions({
         <DistributionAction
           label={playLabel}
           ariaLabel={playAriaLabel}
-          pendingLabel={
+          pendingLabel={playLabel}
+          pendingAriaLabel={
             googlePlay.track === "testing"
-              ? "Google Play — Testing"
-              : "Google Play — coming soon"
+              ? `${name} on Google Play — currently in testing, link coming soon`
+              : `${name} on Google Play — link coming soon`
           }
           icon={<GooglePlayIcon />}
           href={googlePlay.status === "available" ? googlePlay.url : undefined}

@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/cn";
 import type { Project } from "@/types/project";
 
-const statusLabels: Record<Project["status"], string> = {
+const statusLabels: Record<NonNullable<Project["status"]>, string> = {
   "in-development": "In development",
   "in-testing": "In testing",
   released: "Released",
@@ -80,7 +80,11 @@ export function ProjectCard({
             {category}
           </span>
 
-          <Badge variant="outline">{statusLabels[status]}</Badge>
+          {/* Rendered only when a verified status adds information the
+              distribution actions do not already convey. */}
+          {status ? (
+            <Badge variant="outline">{statusLabels[status]}</Badge>
+          ) : null}
         </div>
 
         <h3

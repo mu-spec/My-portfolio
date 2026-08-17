@@ -51,9 +51,8 @@ export function Hero() {
             </p>
 
             <p className="mt-7 max-w-xl text-pretty text-lead text-ink-muted">
-              I build polished mobile applications from idea to production —
-              from the first interface sketch through to a released, maintained
-              app.
+              I build polished mobile applications from idea and interface
+              design through development, testing, and deployment.
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

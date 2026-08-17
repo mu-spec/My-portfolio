@@ -10,8 +10,17 @@ interface DistributionActionProps {
   icon: ReactNode;
   /** Verified destination. When undefined the action renders unavailable. */
   href?: string;
-  /** Label shown while awaiting a verified URL, e.g. "APK coming soon". */
+  /**
+   * Visible label while awaiting a verified URL. Often identical to `label`
+   * when the action is a confirmed part of the project presentation and only
+   * its destination is pending.
+   */
   pendingLabel: string;
+  /**
+   * Accessible name for the pending state. Should make the unavailability
+   * explicit, since the visible label alone may not.
+   */
+  pendingAriaLabel: string;
   /** Adds the download attribute for file destinations. */
   download?: boolean;
   /** Small trailing detail, e.g. "v1.0.0 · 24 MB". */
@@ -40,6 +49,7 @@ export function DistributionAction({
   icon,
   href,
   pendingLabel,
+  pendingAriaLabel,
   download = false,
   detail,
   className,
@@ -47,10 +57,15 @@ export function DistributionAction({
   if (!href) {
     return (
       <span
+        role="button"
         aria-disabled="true"
+        aria-label={pendingAriaLabel}
         className={cn(
           base,
-          "cursor-not-allowed border-line bg-transparent text-ink-subtle",
+          // Present enough to read as part of the project presentation,
+          // clearly inactive enough not to look like a working link.
+          "cursor-not-allowed border-line-strong border-dashed",
+          "bg-transparent text-ink-muted",
           className,
         )}
       >

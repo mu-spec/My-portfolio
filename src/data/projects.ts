@@ -21,10 +21,10 @@ import type { Project, ProjectSlug } from "@/types/project";
  * public production release and must never be presented as one.
  *
  * APK RULE: `apk` is the single place a downloadable Android build is
- * configured. All three projects are currently `{ status: "awaiting-url" }`
- * because no verified download URL has been supplied. To publish one, change
- * that entry to `{ status: "available", url: "..." }` — no component changes
- * are needed. Never substitute a placeholder, "#" or a repository URL.
+ * configured. Every entry is currently `{ status: "awaiting-url" }` because
+ * no verified download URL has been supplied yet. To publish one, change that
+ * entry to `{ status: "available", url: "..." }` — no component changes are
+ * needed. Never substitute a placeholder, "#" or a repository URL.
  *
  * CONTENT RULE: only verified facts are recorded. Names are confirmed.
  * Taglines, summaries, technologies, highlights and media are intentionally
@@ -40,7 +40,6 @@ export const projects: readonly Project[] = [
     tagline: "",
     summary: "",
     featured: true,
-    status: "in-testing",
     technologies: [],
     highlights: [],
     media: [],
@@ -56,7 +55,6 @@ export const projects: readonly Project[] = [
     tagline: "",
     summary: "",
     featured: false,
-    status: "in-development",
     technologies: [],
     highlights: [],
     media: [],
