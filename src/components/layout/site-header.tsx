@@ -23,7 +23,7 @@ export function SiteHeader() {
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="inline-flex h-9 items-center rounded-md px-3 text-sm font-medium text-ink-muted transition-colors hover:bg-elevated hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]"
+                    className="inline-flex h-10 items-center rounded-md px-3.5 text-[0.9375rem] font-medium text-ink-muted transition-colors hover:bg-elevated hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]"
                   >
                     {item.label}
                   </a>
@@ -33,7 +33,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="hidden md:block">
-            <Button href={primaryCta.href} size="sm">
+            <Button href={primaryCta.href} size="md">
               {primaryCta.label}
             </Button>
           </div>

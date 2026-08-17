@@ -28,7 +28,7 @@ export function Badge({
       className={cn(
         // w-fit/self-start keep the badge hugging its content inside flex columns
         "inline-flex w-fit self-start items-center rounded-sm border px-2.5 py-1",
-        "text-xs font-medium tracking-wide",
+        "text-[0.8125rem] font-medium tracking-wide",
         variants[variant],
         className,
       )}

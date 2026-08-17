@@ -21,7 +21,7 @@ export function SiteFooter() {
               <span className="text-[0.9375rem] font-semibold tracking-tight text-ink">
                 {siteConfig.name}
               </span>
-              <span className="text-sm text-ink-subtle">{siteConfig.role}</span>
+              <span className="text-[0.9375rem] text-ink-subtle">{siteConfig.role}</span>
             </div>
 
             <nav aria-label="Footer">
@@ -30,7 +30,7 @@ export function SiteFooter() {
                   <li key={item.href}>
                     <a
                       href={item.href}
-                      className="rounded-xs text-sm text-ink-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
+                      className="rounded-xs text-[0.9375rem] text-ink-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
                     >
                       {item.label}
                     </a>

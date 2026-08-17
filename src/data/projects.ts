@@ -20,6 +20,7 @@ export const projects: readonly Project[] = [
   {
     slug: "electrician-simulator-app",
     name: "Electrician Simulator App",
+    category: "Mobile Utility / Educational App",
     tagline: "",
     summary: "",
     featured: true,
@@ -27,11 +28,13 @@ export const projects: readonly Project[] = [
     technologies: [],
     highlights: [],
     media: [],
+    caseStudyHref: "/work/electrician-simulator-app",
     order: 1,
   },
   {
     slug: "mobile-cleaner",
     name: "Mobile Cleaner",
+    category: "Mobile Utility App",
     tagline: "",
     summary: "",
     featured: false,
@@ -39,11 +42,13 @@ export const projects: readonly Project[] = [
     technologies: [],
     highlights: [],
     media: [],
+    caseStudyHref: "/work/mobile-cleaner",
     order: 2,
   },
   {
     slug: "photo-recover",
     name: "Photo Recover",
+    category: "Photo Recovery Utility",
     tagline: "",
     summary: "",
     featured: false,
@@ -51,6 +56,7 @@ export const projects: readonly Project[] = [
     technologies: [],
     highlights: [],
     media: [],
+    caseStudyHref: "/work/photo-recover",
     order: 3,
   },
 ] as const;

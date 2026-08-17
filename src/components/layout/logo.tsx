@@ -7,7 +7,7 @@ export function Logo() {
   return (
     <Link
       href="/"
-      className="group inline-flex items-baseline gap-2 rounded-xs focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
+      className="group inline-flex min-h-11 items-center gap-2 rounded-xs focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
       aria-label={`${siteConfig.name} — home`}
     >
       <span className="text-[0.9375rem] font-semibold tracking-tight text-ink">

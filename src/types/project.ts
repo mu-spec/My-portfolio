@@ -53,6 +53,11 @@ export interface Project {
   /** Display name. Must match the confirmed project name exactly. */
   name: string;
   /**
+   * High-level classification, e.g. "Mobile Utility App".
+   * Confirmed by the site owner — safe to display.
+   */
+  category: string;
+  /**
    * One-line positioning statement.
    * Empty until verified copy is supplied in a later milestone.
    */
@@ -71,6 +76,11 @@ export interface Project {
   highlights: readonly string[];
   /** Screenshots for the showcase. Populated in a later milestone. */
   media: readonly ProjectMedia[];
+  /**
+   * Case-study route. The page itself is built in a later milestone; the
+   * path is reserved now so the showcase CTA stays stable.
+   */
+  caseStudyHref: string;
   /** Public destinations only. Omitted entirely when none are live yet. */
   links?: ProjectLinks;
   /** Ordering weight for the showcase grid; lower renders first. */

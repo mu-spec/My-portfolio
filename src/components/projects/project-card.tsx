@@ -1,19 +1,13 @@
+import Link from "next/link";
+
+import { ProjectPreviewVisual } from "@/components/projects/project-preview-visual";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/cn";
 import type { Project } from "@/types/project";
 
 const statusLabels: Record<Project["status"], string> = {
   "in-development": "In development",
   released: "Released",
-};
-
-/** Public destinations only — source repositories are never linked. */
-const linkLabels: Record<keyof NonNullable<Project["links"]>, string> = {
-  playStore: "Google Play",
-  appStore: "App Store",
-  website: "Visit site",
-  demo: "Watch demo",
 };
 
 interface ProjectCardProps {
@@ -24,104 +18,101 @@ interface ProjectCardProps {
 }
 
 /**
- * Project card foundation.
+ * Project preview card.
  *
- * Renders only verified, public-facing data. Source repositories are private
- * and are never linked from the UI. Optional fields are omitted entirely when
- * empty rather than filled with placeholder copy, so the layout stays honest
- * until verified content lands in a later milestone. The screenshot/media
- * treatment is completed in the project-showcase milestone.
+ * Shows only verified, public-facing information: name, category and status.
+ * Source repositories are private and are never linked. The single CTA points
+ * at the reserved case-study route, which is implemented in a later milestone.
+ *
+ * The whole card is a link target via a stretched overlay, so the entire
+ * surface is clickable while the accessible name stays on one control and the
+ * keyboard tab order gains only one stop.
  */
 export function ProjectCard({
   project,
   emphasis = false,
   className,
 }: ProjectCardProps) {
-  const { name, tagline, status, technologies, links } = project;
-  const headingId = `project-${project.slug}-title`;
-
-  const publicLinks = links
-    ? (
-        Object.entries(links) as [
-          keyof NonNullable<Project["links"]>,
-          string | undefined,
-        ][]
-      ).filter((entry): entry is [keyof NonNullable<Project["links"]>, string] =>
-        Boolean(entry[1]),
-      )
-    : [];
+  const { name, category, tagline, status, technologies, caseStudyHref } =
+    project;
 
   return (
-    <Card
-      interactive
-      className={cn("group flex flex-col p-6 sm:p-8", className)}
+    <article
+      className={cn(
+        "group relative flex flex-col overflow-hidden rounded-lg border border-line bg-surface",
+        "transition-colors duration-300 ease-[var(--ease-out-soft)]",
+        "hover:border-line-strong hover:bg-elevated",
+        "focus-within:border-line-strong",
+        className,
+      )}
     >
-      {/* Status sits on its own meta row so long project names never
-          compete with the badge for horizontal space. */}
-      <Badge variant={emphasis ? "accent" : "outline"} className="mb-5">
-        {statusLabels[status]}
-      </Badge>
+      <div className={cn("p-4 pb-0", emphasis && "sm:p-6 sm:pb-0")}>
+        <ProjectPreviewVisual slug={project.slug} emphasis={emphasis} />
+      </div>
 
-      <h3
-        id={headingId}
+      <div
         className={cn(
-          "text-balance font-semibold text-ink",
-          emphasis ? "text-h3" : "text-lg",
+          "flex flex-1 flex-col p-6",
+          emphasis && "sm:p-8 sm:pt-7",
         )}
       >
-        {name}
-      </h3>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <span className="text-sm font-medium text-[var(--color-focus)]">
+            {category}
+          </span>
+          <span aria-hidden="true" className="h-3 w-px bg-line-strong" />
+          <Badge variant="outline">{statusLabels[status]}</Badge>
+        </div>
 
-      {tagline ? (
-        <p className="mt-3 text-pretty text-ink-muted">{tagline}</p>
-      ) : null}
+        <h3
+          className={cn(
+            "mt-3 text-balance font-semibold text-ink",
+            emphasis ? "text-h3" : "text-xl",
+          )}
+        >
+          <Link
+            href={caseStudyHref}
+            className="rounded-xs before:absolute before:inset-0 before:content-[''] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
+          >
+            {name}
+          </Link>
+        </h3>
 
-      {technologies.length > 0 ? (
-        <ul className="mt-6 flex flex-wrap gap-2">
-          {technologies.map((technology) => (
-            <li key={technology}>
-              <Badge>{technology}</Badge>
-            </li>
-          ))}
-        </ul>
-      ) : null}
+        {tagline ? (
+          <p className="mt-3 text-pretty text-ink-muted">{tagline}</p>
+        ) : null}
 
-      {publicLinks.length > 0 ? (
-        <ul className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-8">
-          {publicLinks.map(([key, href]) => (
-            <li key={key}>
-              <a
-                href={href}
-                target="_blank"
-                rel="noreferrer noopener"
-                className={cn(
-                  "inline-flex items-center gap-2 rounded-xs text-sm font-medium",
-                  "text-ink-muted transition-colors hover:text-ink",
-                  "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]",
-                )}
-                aria-label={`${name} — ${linkLabels[key]}`}
-              >
-                {linkLabels[key]}
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 16 16"
-                  className={cn(
-                    "size-3.5 transition-transform duration-300 ease-[var(--ease-out-soft)]",
-                    "group-hover:translate-x-0.5 group-hover:-translate-y-0.5",
-                  )}
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" />
-                </svg>
-              </a>
-            </li>
-          ))}
-        </ul>
-      ) : null}
-    </Card>
+        {technologies.length > 0 ? (
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {technologies.map((technology) => (
+              <li key={technology}>
+                <Badge>{technology}</Badge>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
+        <p
+          className={cn(
+            "mt-auto flex items-center gap-2 pt-8 text-sm font-medium",
+            "text-ink-muted transition-colors group-hover:text-ink",
+          )}
+        >
+          View Case Study
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+            className="size-3.5 transition-transform duration-300 ease-[var(--ease-out-soft)] group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M3 8h10M9 4l4 4-4 4" />
+          </svg>
+        </p>
+      </div>
+    </article>
   );
 }
