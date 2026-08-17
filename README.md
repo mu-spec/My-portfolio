@@ -95,9 +95,10 @@ googlePlay: { track: "testing", status: "available", url: "https://play.google.c
 googlePlay: { track: "production", status: "available", url: "https://play.google.com/..." },
 ```
 
-Current state: Electrician Simulator App is on Google Play in a **testing
-track** with the URL pending. Mobile Cleaner and Photo Recover are not on
-Google Play and offer an APK download instead.
+Current state: the portfolio showcases two projects. Electrician Simulator App
+is on Google Play in a **testing track** with the URL pending, and also offers
+an APK download. Mobile Cleaner is not on Google Play and offers an APK
+download only. Both APK URLs are pending.
 
 ### Publishing an APK
 

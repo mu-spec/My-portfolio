@@ -7,13 +7,13 @@ import { getProjects } from "@/data/projects";
 /**
  * Selected Work.
  *
- * The flagship project spans the full grid width on larger screens; the
- * remaining two sit side by side beneath it. This gives Electrician Simulator
- * App clear visual priority without needing a separate component.
+ * With a short, curated list every project gets a full-width row rather than
+ * a grid cell, so two projects read as a deliberate selection instead of a
+ * three-column grid with an empty slot. The flagship keeps the strongest
+ * emphasis via a larger frame and heavier type.
  */
 export function SelectedWork() {
   const projects = getProjects();
-  const [flagship, ...supporting] = projects;
 
   return (
     <Section id={sectionIds.work} bordered spacing="default">
@@ -23,23 +23,17 @@ export function SelectedWork() {
         description="A focused selection of mobile applications, each taken from concept through to a working product."
       />
 
-      <div className="mt-14 flex flex-col gap-5 sm:mt-16">
-        {flagship ? (
-          <ProjectCard
-            project={flagship}
-            emphasis
-            className="lg:grid lg:grid-cols-2 lg:items-center lg:gap-2"
-          />
-        ) : null}
-
-        {supporting.length > 0 ? (
-          <div className="grid gap-5 md:grid-cols-2">
-            {supporting.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-        ) : null}
-      </div>
+      <ol className="mt-14 flex flex-col gap-6 sm:mt-16 sm:gap-8">
+        {projects.map((project, index) => (
+          <li key={project.slug}>
+            <ProjectCard
+              project={project}
+              emphasis={project.featured}
+              index={index + 1}
+            />
+          </li>
+        ))}
+      </ol>
     </Section>
   );
 }

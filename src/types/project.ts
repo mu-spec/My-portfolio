@@ -13,11 +13,13 @@
  * optional so later milestones can populate them without a schema rewrite.
  */
 
-/** Stable identifier used for routing (/work/[slug]) and React keys. */
-export type ProjectSlug =
-  | "electrician-simulator-app"
-  | "mobile-cleaner"
-  | "photo-recover";
+/**
+ * Stable identifier used for routing (/work/[slug]) and React keys.
+ *
+ * Only currently-showcased projects are listed. Adding a project back to the
+ * portfolio means adding its slug here and a record in the data file.
+ */
+export type ProjectSlug = "electrician-simulator-app" | "mobile-cleaner";
 
 export type ProjectStatus = "in-development" | "in-testing" | "released";
 

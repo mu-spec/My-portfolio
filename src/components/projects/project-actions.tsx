@@ -68,6 +68,21 @@ export function ProjectActions({
         </svg>
       </Link>
 
+      {/* The APK is offered whenever the project has one, independently of any
+          Google Play presence — a testing-track listing is not a substitute
+          for a direct download. */}
+      <DistributionAction
+        label="Download APK"
+        ariaLabel={`Download the ${name} Android APK${
+          apkDetail ? ` (${apkDetail})` : ""
+        }`}
+        pendingLabel="APK coming soon"
+        icon={<DownloadIcon />}
+        href={apk.status === "available" ? apk.url : undefined}
+        detail={apkDetail || undefined}
+        download
+      />
+
       {googlePlay.track !== "none" ? (
         <DistributionAction
           label={playLabel}
@@ -78,23 +93,7 @@ export function ProjectActions({
               : "Google Play — coming soon"
           }
           icon={<GooglePlayIcon />}
-          href={
-            googlePlay.status === "available" ? googlePlay.url : undefined
-          }
-        />
-      ) : null}
-
-      {apk.status === "available" || googlePlay.track === "none" ? (
-        <DistributionAction
-          label="Download APK"
-          ariaLabel={`Download the ${name} Android APK${
-            apkDetail ? ` (${apkDetail})` : ""
-          }`}
-          pendingLabel="APK coming soon"
-          icon={<DownloadIcon />}
-          href={apk.status === "available" ? apk.url : undefined}
-          detail={apkDetail || undefined}
-          download
+          href={googlePlay.status === "available" ? googlePlay.url : undefined}
         />
       ) : null}
     </div>

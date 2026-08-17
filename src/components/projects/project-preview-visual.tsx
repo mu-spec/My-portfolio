@@ -87,31 +87,7 @@ function Motif({ slug }: { slug: ProjectSlug }) {
     );
   }
 
-  if (slug === "mobile-cleaner") {
-    // Concentric sweep motif
-    return (
-      <svg
-        viewBox="0 0 120 80"
-        className={common}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      >
-        <circle cx="60" cy="40" r="28" />
-        <circle cx="60" cy="40" r="18" strokeDasharray="4 5" />
-        <path
-          d="M60 12a28 28 0 0 1 24 14"
-          className="text-[var(--color-accent)]"
-          strokeWidth="2.5"
-        />
-        <circle cx="60" cy="40" r="5" className="fill-[var(--color-accent)] stroke-none" />
-        <path d="M60 40 78 26" strokeWidth="2" />
-      </svg>
-    );
-  }
-
-  // Photo Recover — layered frames motif
+  // Mobile Cleaner — concentric sweep motif
   return (
     <svg
       viewBox="0 0 120 80"
@@ -119,20 +95,17 @@ function Motif({ slug }: { slug: ProjectSlug }) {
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
-      strokeLinejoin="round"
+      strokeLinecap="round"
     >
-      <rect x="20" y="16" width="56" height="42" rx="4" strokeDasharray="4 5" />
-      <rect
-        x="36"
-        y="26"
-        width="56"
-        height="42"
-        rx="4"
+      <circle cx="60" cy="40" r="28" />
+      <circle cx="60" cy="40" r="18" strokeDasharray="4 5" />
+      <path
+        d="M60 12a28 28 0 0 1 24 14"
         className="text-[var(--color-accent)]"
-        strokeWidth="2"
+        strokeWidth="2.5"
       />
-      <path d="M40 60l14-14 8 8 8-9 18 19" strokeWidth="1.8" />
-      <circle cx="52" cy="38" r="4" className="fill-current stroke-none" />
+      <circle cx="60" cy="40" r="5" className="fill-[var(--color-accent)] stroke-none" />
+      <path d="M60 40 78 26" strokeWidth="2" />
     </svg>
   );
 }

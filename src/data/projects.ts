@@ -4,6 +4,10 @@ import type { Project, ProjectSlug } from "@/types/project";
  * Centralized project data — the single source of truth for the showcase,
  * case studies and any future project references.
  *
+ * SCOPE: only projects currently showcased publicly are listed here. Projects
+ * withdrawn from the portfolio are removed from this file entirely rather
+ * than flagged, so nothing about them reaches the client bundle.
+ *
  * PRIVACY RULE: application source code is private. Repository URLs are NOT
  * stored here and must not be added. The `Project` type has no repository
  * field, so this is enforced at compile time rather than by convention.
@@ -60,22 +64,6 @@ export const projects: readonly Project[] = [
     apk: { status: "awaiting-url" },
     googlePlay: { track: "none" },
     order: 2,
-  },
-  {
-    slug: "photo-recover",
-    name: "Photo Recover",
-    category: "Photo Recovery Utility",
-    tagline: "",
-    summary: "",
-    featured: false,
-    status: "in-development",
-    technologies: [],
-    highlights: [],
-    media: [],
-    caseStudyHref: "/work/photo-recover",
-    apk: { status: "awaiting-url" },
-    googlePlay: { track: "none" },
-    order: 3,
   },
 ] as const;
 
