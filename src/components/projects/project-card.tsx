@@ -36,7 +36,7 @@ export function ProjectCard({
   index,
   className,
 }: ProjectCardProps) {
-  const { name, category, tagline, status, technologies } = project;
+  const { name, category, tagline, status } = project;
 
   return (
     <article
@@ -108,15 +108,8 @@ export function ProjectCard({
           </p>
         ) : null}
 
-        {technologies.length > 0 ? (
-          <ul className="mt-6 flex flex-wrap gap-2">
-            {technologies.map((technology) => (
-              <li key={technology}>
-                <Badge>{technology}</Badge>
-              </li>
-            ))}
-          </ul>
-        ) : null}
+        {/* The verified technology stack is presented on the case study, not
+            here: the approved homepage card layout stays unchanged. */}
 
         <ProjectActions project={project} className="mt-8" />
       </div>

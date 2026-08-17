@@ -99,8 +99,27 @@ export type ProjectApk =
       status: "awaiting-url";
     };
 
+/**
+ * Stable role identifier for a screenshot, so a case study can request a
+ * specific screen by name instead of a fragile array index.
+ */
+export type ProjectMediaKey =
+  | "home"
+  | "theory-academy"
+  | "calculators"
+  | "ohms-law"
+  | "wiring-diagram"
+  | "quiz-categories"
+  | "quiz-question"
+  | "settings"
+  | "photos"
+  | "files"
+  | "cleanup-complete";
+
 /** A screenshot or capture used by the showcase and case-study pages. */
 export interface ProjectMedia {
+  /** Role identifier used to look this screen up by name. */
+  key?: ProjectMediaKey;
   /** Path to an asset in /public. */
   src: string;
   /** Meaningful alternative text. Required for accessibility. */
@@ -131,7 +150,12 @@ export interface Project {
   /** Marks the single flagship project for emphasis in the showcase. */
   featured: boolean;
   status?: ProjectStatus;
-  /** Verified technologies only. Left empty in P0 rather than guessed. */
+  /**
+   * Verified technology stack, confirmed by the project owner.
+   *
+   * Rendered on the case study only. The homepage card deliberately does not
+   * display these, so the approved homepage layout stays unchanged.
+   */
   technologies: readonly string[];
   /** Verified feature highlights only. Left empty in P0 rather than guessed. */
   highlights: readonly string[];
