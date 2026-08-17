@@ -4,11 +4,17 @@ import type { Project, ProjectSlug } from "@/types/project";
  * Centralized project data — the single source of truth for the showcase,
  * case studies and any future project references.
  *
- * CONTENT RULE: only verified facts are recorded here. Names and repository
- * URLs are confirmed. Taglines, summaries, technologies and highlights are
- * intentionally left empty and will be filled with verified content in a
- * later milestone. No downloads, users, ratings, revenue, testimonials,
- * clients, awards or performance metrics are stored or displayed.
+ * PRIVACY RULE: application source code is private. Repository URLs are NOT
+ * stored here and must not be added. The `Project` type has no repository
+ * field, so this is enforced at compile time rather than by convention.
+ * Project presentation is built from screenshots, features, technologies,
+ * case studies and public store/demo links only.
+ *
+ * CONTENT RULE: only verified facts are recorded. Names are confirmed.
+ * Taglines, summaries, technologies, highlights and media are intentionally
+ * empty and will be filled with verified content in a later milestone. No
+ * downloads, users, ratings, revenue, testimonials, clients, awards or
+ * performance metrics are stored or displayed.
  */
 export const projects: readonly Project[] = [
   {
@@ -20,9 +26,7 @@ export const projects: readonly Project[] = [
     status: "in-development",
     technologies: [],
     highlights: [],
-    links: {
-      github: "https://github.com/mu-spec/Electrician-Simulator-App",
-    },
+    media: [],
     order: 1,
   },
   {
@@ -34,9 +38,7 @@ export const projects: readonly Project[] = [
     status: "in-development",
     technologies: [],
     highlights: [],
-    links: {
-      github: "https://github.com/mu-spec/Mobile-Cleaner",
-    },
+    media: [],
     order: 2,
   },
   {
@@ -48,9 +50,7 @@ export const projects: readonly Project[] = [
     status: "in-development",
     technologies: [],
     highlights: [],
-    links: {
-      github: "https://github.com/mu-spec/photo_recover_ai",
-    },
+    media: [],
     order: 3,
   },
 ] as const;

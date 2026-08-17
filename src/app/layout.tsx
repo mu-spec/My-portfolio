@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  authors: [{ name: siteConfig.name, url: siteConfig.links.github }],
+  authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
 };
 

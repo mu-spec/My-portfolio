@@ -40,18 +40,13 @@ export function SiteFooter() {
             </nav>
           </div>
 
-          <div className="flex flex-col gap-4 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
+          {/* Contact details and any approved profile links are added in a
+              later milestone. Source repositories are private and are never
+              linked here. */}
+          <div className="border-t border-line pt-8">
             <p className="text-sm text-ink-subtle">
               © {year} {siteConfig.name}
             </p>
-            <a
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="rounded-xs text-sm text-ink-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
-            >
-              GitHub
-            </a>
           </div>
         </div>
       </Container>

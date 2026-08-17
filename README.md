@@ -62,6 +62,26 @@ Only verified information is committed. No invented metrics, downloads,
 ratings, testimonials, clients, employment history or unverified technologies.
 Project fields awaiting verified content are intentionally left empty.
 
+## Source-code privacy
+
+Application source repositories are **private** and must never be exposed to
+portfolio visitors.
+
+- The `Project` type has **no repository field**, so a repo URL cannot be
+  attached to a project and rendered. This is enforced by the compiler, not by
+  convention.
+- `ProjectLinks` models public destinations only: Play Store, App Store,
+  website and demo.
+- No "View source" / "GitHub" affordance exists in any component.
+- Repository URLs are not stored anywhere in this repository, including
+  metadata and comments.
+
+Project presentation is built from screenshots, features, technologies, case
+studies and public store/demo links.
+
+Note: this repository is itself public, so anything committed here is visible.
+Keep repository URLs and other private references out of the codebase.
+
 ## Deployment
 
 Deploy to Vercel with default Next.js settings. Update `siteConfig.url` in

@@ -147,7 +147,7 @@ export default function FoundationPage() {
         <SectionHeading
           eyebrow="Data architecture"
           title="Project records"
-          description="The three confirmed projects, rendered from centralized data. Descriptions and technologies stay empty until verified content is supplied."
+          description="The three confirmed projects, rendered from centralized data. Descriptions, technologies and screenshots stay empty until verified content is supplied. Source repositories are private and are never linked."
         />
 
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

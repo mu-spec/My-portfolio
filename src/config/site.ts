@@ -21,10 +21,15 @@ export const siteConfig = {
     "Portfolio of Muhammad Saad, a mobile app developer building Android applications.",
   /** Canonical production URL. Update before deploying to Vercel. */
   url: "https://example.com",
-  /** Verified external profiles only. */
-  links: {
-    github: "https://github.com/mu-spec",
-  },
+  /**
+   * Public profile links.
+   *
+   * PRIVACY RULE: application source repositories are private and must never
+   * be linked from the portfolio. A general GitHub profile link is only added
+   * here on explicit approval — note that a public profile can surface those
+   * repositories, so confirm their visibility first.
+   */
+  links: {},
 } as const;
 
 export type SiteConfig = typeof siteConfig;

@@ -1,10 +1,16 @@
 /**
  * Project domain types.
  *
- * The shape is deliberately conservative: fields that would invite invented
+ * PRIVACY RULE: application source repositories are private and must never be
+ * exposed to portfolio visitors. There is deliberately no repository field on
+ * this model — the type system itself prevents a repo URL from being attached
+ * to a project and rendered. Repository locations are development-only
+ * information and are not stored in this codebase.
+ *
+ * The shape is otherwise conservative: fields that would invite invented
  * marketing content (downloads, ratings, revenue, testimonials, awards) are
- * intentionally absent from the model. Fields reserved for future verified
- * content are optional so P1+ can populate them without a schema rewrite.
+ * intentionally absent. Fields reserved for future verified content are
+ * optional so later milestones can populate them without a schema rewrite.
  */
 
 /** Stable identifier used for routing (/work/[slug]) and React keys. */
@@ -15,13 +21,31 @@ export type ProjectSlug =
 
 export type ProjectStatus = "in-development" | "released";
 
+/**
+ * Public, visitor-facing destinations only.
+ *
+ * Every link here is safe to render in the UI. Source repositories are
+ * intentionally not representable.
+ */
 export interface ProjectLinks {
-  /** Public source repository. Verified. */
-  github: string;
-  /** Store listing — added only once verified. */
-  store?: string;
-  /** Marketing or landing page — added only once verified. */
+  /** Google Play listing — added only once verified and live. */
+  playStore?: string;
+  /** Apple App Store listing — added only once verified and live. */
+  appStore?: string;
+  /** Product or landing page — added only once verified. */
   website?: string;
+  /** Public demo or video walkthrough — added only once verified. */
+  demo?: string;
+}
+
+/** A screenshot or capture used by the showcase and case-study pages. */
+export interface ProjectMedia {
+  /** Path to an asset in /public. */
+  src: string;
+  /** Meaningful alternative text. Required for accessibility. */
+  alt: string;
+  width: number;
+  height: number;
 }
 
 export interface Project {
@@ -41,15 +65,14 @@ export interface Project {
   /** Marks the single flagship project for emphasis in the showcase. */
   featured: boolean;
   status: ProjectStatus;
-  /**
-   * Verified technologies only. Left empty in P0 rather than guessed.
-   */
+  /** Verified technologies only. Left empty in P0 rather than guessed. */
   technologies: readonly string[];
-  /**
-   * Verified feature highlights only. Left empty in P0 rather than guessed.
-   */
+  /** Verified feature highlights only. Left empty in P0 rather than guessed. */
   highlights: readonly string[];
-  links: ProjectLinks;
+  /** Screenshots for the showcase. Populated in a later milestone. */
+  media: readonly ProjectMedia[];
+  /** Public destinations only. Omitted entirely when none are live yet. */
+  links?: ProjectLinks;
   /** Ordering weight for the showcase grid; lower renders first. */
   order: number;
 }
