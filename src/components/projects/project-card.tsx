@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { ApkDownloadButton } from "@/components/projects/apk-download-button";
 import { ProjectPreviewVisual } from "@/components/projects/project-preview-visual";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/cn";
@@ -24,16 +25,16 @@ interface ProjectCardProps {
  * Source repositories are private and are never linked. The single CTA points
  * at the reserved case-study route, which is implemented in a later milestone.
  *
- * The whole card is a link target via a stretched overlay, so the entire
- * surface is clickable while the accessible name stays on one control and the
- * keyboard tab order gains only one stop.
+ * The card exposes two distinct actions — the case study and, when a verified
+ * URL exists, an APK download — so each is a separate labelled control rather
+ * than a whole-card link.
  */
 export function ProjectCard({
   project,
   emphasis = false,
   className,
 }: ProjectCardProps) {
-  const { name, category, tagline, status, technologies, caseStudyHref } =
+  const { name, category, tagline, status, technologies, caseStudyHref, apk } =
     project;
 
   return (
@@ -60,7 +61,12 @@ export function ProjectCard({
           <span className="text-sm font-medium text-[var(--color-focus)]">
             {category}
           </span>
-          <span aria-hidden="true" className="h-3 w-px bg-line-strong" />
+          {/* Hidden when the badge wraps to its own line, so the rule never
+              dangles at the end of the category row. */}
+          <span
+            aria-hidden="true"
+            className="hidden h-3 w-px bg-line-strong sm:block"
+          />
           <Badge variant="outline">{statusLabels[status]}</Badge>
         </div>
 
@@ -70,12 +76,7 @@ export function ProjectCard({
             emphasis ? "text-h3" : "text-xl",
           )}
         >
-          <Link
-            href={caseStudyHref}
-            className="rounded-xs before:absolute before:inset-0 before:content-[''] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
-          >
-            {name}
-          </Link>
+          {name}
         </h3>
 
         {tagline ? (
@@ -92,26 +93,38 @@ export function ProjectCard({
           </ul>
         ) : null}
 
-        <p
-          className={cn(
-            "mt-auto flex items-center gap-2 pt-8 text-sm font-medium",
-            "text-ink-muted transition-colors group-hover:text-ink",
-          )}
-        >
-          View Case Study
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-            className="size-3.5 transition-transform duration-300 ease-[var(--ease-out-soft)] group-hover:translate-x-1"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.7"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+        {/* Two distinct destinations, so each is its own control rather than
+            a whole-card link. */}
+        <div className="mt-auto flex flex-wrap items-center gap-3 pt-8">
+          <Link
+            href={caseStudyHref}
+            className={cn(
+              "inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md px-5",
+              "bg-accent text-[0.9375rem] font-medium text-white",
+              "shadow-[0_1px_0_0_rgb(255_255_255/0.12)_inset]",
+              "transition-colors duration-200 ease-[var(--ease-out-soft)]",
+              "hover:bg-[var(--color-accent-hover)] active:translate-y-px",
+              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]",
+            )}
+            aria-label={`View the ${name} case study`}
           >
-            <path d="M3 8h10M9 4l4 4-4 4" />
-          </svg>
-        </p>
+            View Case Study
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+              className="size-3.5 transition-transform duration-300 ease-[var(--ease-out-soft)] group-hover:translate-x-0.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </Link>
+
+          <ApkDownloadButton apk={apk} projectName={name} />
+        </div>
       </div>
     </article>
   );

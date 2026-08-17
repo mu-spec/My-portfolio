@@ -77,7 +77,31 @@ portfolio visitors.
   metadata and comments.
 
 Project presentation is built from screenshots, features, technologies, case
-studies and public store/demo links.
+studies, public store/demo links and downloadable APK builds.
+
+### Publishing an APK
+
+Visitors get a `Download APK` action instead of any access to source. Each
+project's build is configured in one place, `src/data/projects.ts`:
+
+```ts
+// awaiting a verified URL — renders a disabled "APK coming soon" control
+apk: { status: "awaiting-url" },
+
+// published — renders an enabled download link
+apk: {
+  status: "available",
+  url: "/downloads/electrician-simulator-app.apk", // or an external URL
+  version: "1.0.0",        // optional, omit unless verified
+  fileSizeLabel: "24 MB",  // optional, omit unless verified
+},
+```
+
+Self-hosted builds go in `public/downloads/`. No component changes are needed.
+
+The `ProjectApk` type is a discriminated union, so `url` cannot be set on the
+`awaiting-url` variant and `available` cannot exist without a `url` — both are
+compile errors. Never substitute `#`, a placeholder or a repository URL.
 
 Note: this repository is itself public, so anything committed here is visible.
 Keep repository URLs and other private references out of the codebase.

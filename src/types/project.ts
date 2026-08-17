@@ -38,6 +38,32 @@ export interface ProjectLinks {
   demo?: string;
 }
 
+/**
+ * Downloadable Android build.
+ *
+ * Modelled as a discriminated union so "no URL yet" is an explicit, typed
+ * state rather than an empty string or a placeholder href. A URL can only
+ * exist on the "available" variant, which means the UI cannot render an
+ * enabled download control without a real destination.
+ *
+ * The url may point at a file in /public (e.g. "/downloads/app.apk") or at
+ * an external host. Never a repository URL.
+ */
+export type ProjectApk =
+  | {
+      status: "available";
+      /** Verified, working download URL. */
+      url: string;
+      /** Release version, e.g. "1.2.0". Only when verified. */
+      version?: string;
+      /** Human-readable size, e.g. "24 MB". Only when verified. */
+      fileSizeLabel?: string;
+    }
+  | {
+      /** No verified APK URL yet — the download control renders disabled. */
+      status: "awaiting-url";
+    };
+
 /** A screenshot or capture used by the showcase and case-study pages. */
 export interface ProjectMedia {
   /** Path to an asset in /public. */
@@ -81,6 +107,11 @@ export interface Project {
    * path is reserved now so the showcase CTA stays stable.
    */
   caseStudyHref: string;
+  /**
+   * Downloadable Android build. Centralized here so adding a real APK later
+   * is a one-line data change with no component edits.
+   */
+  apk: ProjectApk;
   /** Public destinations only. Omitted entirely when none are live yet. */
   links?: ProjectLinks;
   /** Ordering weight for the showcase grid; lower renders first. */

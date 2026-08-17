@@ -10,6 +10,12 @@ import type { Project, ProjectSlug } from "@/types/project";
  * Project presentation is built from screenshots, features, technologies,
  * case studies and public store/demo links only.
  *
+ * APK RULE: `apk` is the single place a downloadable Android build is
+ * configured. All three projects are currently `{ status: "awaiting-url" }`
+ * because no verified download URL has been supplied. To publish one, change
+ * that entry to `{ status: "available", url: "..." }` — no component changes
+ * are needed. Never substitute a placeholder, "#" or a repository URL.
+ *
  * CONTENT RULE: only verified facts are recorded. Names are confirmed.
  * Taglines, summaries, technologies, highlights and media are intentionally
  * empty and will be filled with verified content in a later milestone. No
@@ -29,6 +35,7 @@ export const projects: readonly Project[] = [
     highlights: [],
     media: [],
     caseStudyHref: "/work/electrician-simulator-app",
+    apk: { status: "awaiting-url" },
     order: 1,
   },
   {
@@ -43,6 +50,7 @@ export const projects: readonly Project[] = [
     highlights: [],
     media: [],
     caseStudyHref: "/work/mobile-cleaner",
+    apk: { status: "awaiting-url" },
     order: 2,
   },
   {
@@ -57,6 +65,7 @@ export const projects: readonly Project[] = [
     highlights: [],
     media: [],
     caseStudyHref: "/work/photo-recover",
+    apk: { status: "awaiting-url" },
     order: 3,
   },
 ] as const;
