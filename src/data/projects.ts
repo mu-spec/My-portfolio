@@ -10,6 +10,12 @@ import type { Project, ProjectSlug } from "@/types/project";
  * Project presentation is built from screenshots, features, technologies,
  * case studies and public store/demo links only.
  *
+ * DISTRIBUTION RULE: `apk` and `googlePlay` are the only places a public
+ * distribution destination is configured. Both model "no verified URL yet"
+ * as an explicit variant, so a control can never link to a placeholder.
+ * Google Play additionally records the track: a build in `testing` is not a
+ * public production release and must never be presented as one.
+ *
  * APK RULE: `apk` is the single place a downloadable Android build is
  * configured. All three projects are currently `{ status: "awaiting-url" }`
  * because no verified download URL has been supplied. To publish one, change
@@ -30,12 +36,13 @@ export const projects: readonly Project[] = [
     tagline: "",
     summary: "",
     featured: true,
-    status: "in-development",
+    status: "in-testing",
     technologies: [],
     highlights: [],
     media: [],
     caseStudyHref: "/work/electrician-simulator-app",
     apk: { status: "awaiting-url" },
+    googlePlay: { track: "testing", status: "awaiting-url" },
     order: 1,
   },
   {
@@ -51,6 +58,7 @@ export const projects: readonly Project[] = [
     media: [],
     caseStudyHref: "/work/mobile-cleaner",
     apk: { status: "awaiting-url" },
+    googlePlay: { track: "none" },
     order: 2,
   },
   {
@@ -66,6 +74,7 @@ export const projects: readonly Project[] = [
     media: [],
     caseStudyHref: "/work/photo-recover",
     apk: { status: "awaiting-url" },
+    googlePlay: { track: "none" },
     order: 3,
   },
 ] as const;

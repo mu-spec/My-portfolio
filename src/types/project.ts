@@ -19,17 +19,17 @@ export type ProjectSlug =
   | "mobile-cleaner"
   | "photo-recover";
 
-export type ProjectStatus = "in-development" | "released";
+export type ProjectStatus = "in-development" | "in-testing" | "released";
 
 /**
  * Public, visitor-facing destinations only.
  *
  * Every link here is safe to render in the UI. Source repositories are
- * intentionally not representable.
+ * intentionally not representable. Google Play is modelled separately by
+ * `ProjectGooglePlay` because its track (testing vs production) is
+ * meaningful and must not be blurred into a generic store link.
  */
 export interface ProjectLinks {
-  /** Google Play listing — added only once verified and live. */
-  playStore?: string;
   /** Apple App Store listing — added only once verified and live. */
   appStore?: string;
   /** Product or landing page — added only once verified. */
@@ -37,6 +37,31 @@ export interface ProjectLinks {
   /** Public demo or video walkthrough — added only once verified. */
   demo?: string;
 }
+
+/**
+ * Shared shape for any distribution destination.
+ *
+ * "No verified URL yet" is a distinct variant rather than an empty string,
+ * so the UI can never render an enabled control pointing nowhere.
+ */
+export type DistributionLink =
+  | { status: "awaiting-url" }
+  | { status: "available"; url: string };
+
+/**
+ * Google Play presence.
+ *
+ * The track is deliberately explicit. A build sitting in a testing track is
+ * NOT a public production release, and the UI must say so — collapsing both
+ * into one "Google Play" link would overstate the app's availability.
+ */
+export type ProjectGooglePlay =
+  /** Not published to Google Play at all. */
+  | { track: "none" }
+  /** Uploaded and in a testing track (internal/closed/open testing). */
+  | ({ track: "testing" } & DistributionLink)
+  /** Live, publicly available production release. */
+  | ({ track: "production" } & DistributionLink);
 
 /**
  * Downloadable Android build.
@@ -112,6 +137,11 @@ export interface Project {
    * is a one-line data change with no component edits.
    */
   apk: ProjectApk;
+  /**
+   * Google Play presence and track. Centralized alongside `apk` so all
+   * distribution URLs live in one place.
+   */
+  googlePlay: ProjectGooglePlay;
   /** Public destinations only. Omitted entirely when none are live yet. */
   links?: ProjectLinks;
   /** Ordering weight for the showcase grid; lower renders first. */

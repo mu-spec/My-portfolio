@@ -79,6 +79,26 @@ portfolio visitors.
 Project presentation is built from screenshots, features, technologies, case
 studies, public store/demo links and downloadable APK builds.
 
+### Distribution status
+
+Each project's public distribution is configured in `src/data/projects.ts` via
+two fields, `apk` and `googlePlay`. Both model "no verified URL yet" as an
+explicit variant, so a control can never point at a placeholder.
+
+Google Play records the **track**, because a build in testing is not a public
+production release and must not be presented as one:
+
+```ts
+googlePlay: { track: "none" },                              // not on Google Play
+googlePlay: { track: "testing", status: "awaiting-url" },   // in testing, URL pending
+googlePlay: { track: "testing", status: "available", url: "https://play.google.com/..." },
+googlePlay: { track: "production", status: "available", url: "https://play.google.com/..." },
+```
+
+Current state: Electrician Simulator App is on Google Play in a **testing
+track** with the URL pending. Mobile Cleaner and Photo Recover are not on
+Google Play and offer an APK download instead.
+
 ### Publishing an APK
 
 Visitors get a `Download APK` action instead of any access to source. Each

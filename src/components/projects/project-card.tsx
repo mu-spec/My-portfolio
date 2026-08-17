@@ -1,6 +1,4 @@
-import Link from "next/link";
-
-import { ApkDownloadButton } from "@/components/projects/apk-download-button";
+import { ProjectActions } from "@/components/projects/project-actions";
 import { ProjectPreviewVisual } from "@/components/projects/project-preview-visual";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/cn";
@@ -8,6 +6,7 @@ import type { Project } from "@/types/project";
 
 const statusLabels: Record<Project["status"], string> = {
   "in-development": "In development",
+  "in-testing": "In testing",
   released: "Released",
 };
 
@@ -22,20 +21,19 @@ interface ProjectCardProps {
  * Project preview card.
  *
  * Shows only verified, public-facing information: name, category and status.
- * Source repositories are private and are never linked. The single CTA points
- * at the reserved case-study route, which is implemented in a later milestone.
+ * Source repositories are private and are never linked.
  *
- * The card exposes two distinct actions — the case study and, when a verified
- * URL exists, an APK download — so each is a separate labelled control rather
- * than a whole-card link.
+ * Actions are delegated to ProjectActions, which derives them from the
+ * project's distribution data. Because a card can carry several distinct
+ * destinations, each is its own labelled control rather than a whole-card
+ * link that would swallow their clicks.
  */
 export function ProjectCard({
   project,
   emphasis = false,
   className,
 }: ProjectCardProps) {
-  const { name, category, tagline, status, technologies, caseStudyHref, apk } =
-    project;
+  const { name, category, tagline, status, technologies } = project;
 
   return (
     <article
@@ -93,38 +91,7 @@ export function ProjectCard({
           </ul>
         ) : null}
 
-        {/* Two distinct destinations, so each is its own control rather than
-            a whole-card link. */}
-        <div className="mt-auto flex flex-wrap items-center gap-3 pt-8">
-          <Link
-            href={caseStudyHref}
-            className={cn(
-              "inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md px-5",
-              "bg-accent text-[0.9375rem] font-medium text-white",
-              "shadow-[0_1px_0_0_rgb(255_255_255/0.12)_inset]",
-              "transition-colors duration-200 ease-[var(--ease-out-soft)]",
-              "hover:bg-[var(--color-accent-hover)] active:translate-y-px",
-              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]",
-            )}
-            aria-label={`View the ${name} case study`}
-          >
-            View Case Study
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 16 16"
-              className="size-3.5 transition-transform duration-300 ease-[var(--ease-out-soft)] group-hover:translate-x-0.5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.7"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M3 8h10M9 4l4 4-4 4" />
-            </svg>
-          </Link>
-
-          <ApkDownloadButton apk={apk} projectName={name} />
-        </div>
+        <ProjectActions project={project} className="mt-auto pt-8" />
       </div>
     </article>
   );
