@@ -1,5 +1,5 @@
 import { ProjectActions } from "@/components/projects/project-actions";
-import { ProjectPreviewVisual } from "@/components/projects/project-preview-visual";
+import { ProjectShowcase } from "@/components/projects/project-showcase";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/cn";
 import type { Project } from "@/types/project";
@@ -49,12 +49,17 @@ export function ProjectCard({
         "lg:grid lg:items-center",
         // The flagship carries three actions, so its text column gets more
         // room to keep them on one row at wide sizes.
-        emphasis ? "lg:grid-cols-[1fr_1.1fr]" : "lg:grid-cols-2",
+        emphasis ? "lg:grid-cols-[1.15fr_1fr]" : "lg:grid-cols-[1.05fr_1fr]",
         className,
       )}
     >
-      <div className={cn("p-4 pb-0 lg:pb-4", emphasis && "sm:p-6 sm:pb-0 lg:sm:pb-6")}>
-        <ProjectPreviewVisual slug={project.slug} emphasis={emphasis} />
+      <div
+        className={cn(
+          "p-6 pb-0 lg:pb-6",
+          emphasis ? "sm:p-8 sm:pb-0 lg:sm:pb-8" : "sm:p-8 sm:pb-0 lg:sm:pb-8",
+        )}
+      >
+        <ProjectShowcase project={project} />
       </div>
 
       <div
