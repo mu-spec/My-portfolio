@@ -72,13 +72,14 @@ export const projects: readonly Project[] = [
       version: "1.0.0",
       fileSizeLabel: "35.6 MB",
     },
-    // Testing track, not a public production release. The action label and
-    // the `track` value both keep that distinction explicit.
-    googlePlay: {
-      track: "testing",
-      status: "available",
-      url: "https://play.google.com/store/apps/details?id=com.koreappstek.ElectricianSimulatorApp",
-    },
+    // The app sits in a PRIVATE/CLOSED Google Play testing track. Such a
+    // listing is not reachable by the public — the store URL returns 404 to
+    // anyone who is not an opted-in tester — and no public tester opt-in URL
+    // exists. Rather than render a control that would dead-end visitors, no
+    // Play presence is advertised at all. Do not guess or construct an
+    // opt-in URL; set this to a `testing` track only once a verified,
+    // publicly reachable opt-in link is supplied.
+    googlePlay: { track: "none" },
     order: 1,
   },
   {
