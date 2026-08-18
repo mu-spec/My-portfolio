@@ -20,7 +20,7 @@ export function SafetyGateDiagram({ className }: { className?: string }) {
     <figure className={cn("w-full", className)}>
       <div
         className={cn(
-          "flex flex-col gap-3 rounded-lg border border-line-strong bg-surface p-5",
+          "flex flex-col gap-3 rounded-lg border border-line-strong bg-surface p-6 sm:p-7",
         )}
       >
         {STAGES.map((stage, i) => (
@@ -38,27 +38,27 @@ export function SafetyGateDiagram({ className }: { className?: string }) {
               <div className="min-w-0">
                 <p
                   className={cn(
-                    "text-[0.9375rem] font-medium",
+                    "text-[1.0625rem] font-medium",
                     i === 1 ? "text-[var(--cleaner-accent-text)]" : "text-ink",
                   )}
                 >
                   {stage.label}
                 </p>
-                <p className="text-sm text-ink-subtle">{stage.note}</p>
+                <p className="text-[0.9375rem] text-ink-subtle">{stage.note}</p>
               </div>
             </div>
 
             {i < STAGES.length - 1 ? (
               <span
                 aria-hidden="true"
-                className="ml-1 h-4 w-px bg-line-strong"
+                className="ml-1 h-6 w-px bg-line-strong"
               />
             ) : null}
           </div>
         ))}
       </div>
 
-      <figcaption className="mt-3 text-sm text-ink-subtle">
+      <figcaption className="mt-3 text-[0.9375rem] text-ink-subtle">
         Diagram of the deletion pipeline — not an app screen.
       </figcaption>
     </figure>

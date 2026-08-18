@@ -251,7 +251,7 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* Overview                                                            */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered>
+      <Section bordered spacing="tight-lg">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <SectionHeading
             eyebrow="Overview"
@@ -285,7 +285,7 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* Core functionality                                                  */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered>
+      <Section bordered spacing="tight-lg">
         <SectionHeading
           eyebrow="Core functionality"
           title="What it looks for"
@@ -309,10 +309,15 @@ export default function MobileCleanerCaseStudy() {
                 {section.items.map((item) => (
                   <li
                     key={item.title}
-                    className="flex flex-col gap-1.5 bg-surface p-6 transition-colors duration-300 ease-[var(--ease-out-soft)] hover:bg-elevated"
+                    className="flex flex-col gap-2 bg-surface p-6 transition-colors duration-300 ease-[var(--ease-out-soft)] hover:bg-elevated sm:p-7"
                   >
-                    <h4 className="font-medium text-ink">{item.title}</h4>
-                    <p className="text-pretty text-ink-muted">
+                    <h4 className="text-[1.0625rem] font-medium text-ink">
+                      {item.title}
+                    </h4>
+                    {/* Bumped from the default 16px/1.5 so supporting copy is
+                        comfortable at desktop scale without introducing a new
+                        type token. */}
+                    <p className="text-pretty text-[1.0625rem] leading-[1.6] text-ink-muted">
                       {item.description}
                     </p>
                   </li>
@@ -326,14 +331,14 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* Walkthrough — vertical flow                                         */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered spacing="spacious">
+      <Section bordered spacing="tight-lg">
         <SectionHeading
           eyebrow="The flow"
           title="Inspect, review, then clean"
           description="Real screens from the Android build, in the order a cleanup actually happens."
         />
 
-        <ol className="mt-20 flex flex-col gap-20 lg:gap-24">
+        <ol className="mt-16 flex flex-col gap-16 lg:gap-20">
           <FlowStep
             index="01"
             title="Understand what is stored"
@@ -371,7 +376,7 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* UX / engineering                                                    */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered>
+      <Section bordered spacing="tight-lg">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <SectionHeading
             eyebrow="UX & engineering"
@@ -397,11 +402,24 @@ export default function MobileCleanerCaseStudy() {
           </div>
         </div>
 
-        <ul className="mt-16 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2">
-          {ENGINEERING_POINTS.map((point) => (
-            <li key={point.title} className="flex flex-col gap-3 bg-surface p-7">
+        {/* Numbered, teal-marked cards so this block reads as intentionally
+            composed rather than as a plain leftover grid. */}
+        <ul className="mt-14 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2">
+          {ENGINEERING_POINTS.map((point, i) => (
+            <li
+              key={point.title}
+              className="flex flex-col gap-3 bg-surface p-7 transition-colors duration-300 ease-[var(--ease-out-soft)] hover:bg-elevated sm:p-8"
+            >
+              <span
+                aria-hidden="true"
+                className="font-mono text-sm text-[var(--cleaner-accent-text)]"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
               <h3 className="text-h3 font-semibold text-ink">{point.title}</h3>
-              <p className="text-pretty text-ink-muted">{point.description}</p>
+              <p className="text-pretty text-[1.0625rem] leading-[1.6] text-ink-muted">
+                {point.description}
+              </p>
             </li>
           ))}
         </ul>
@@ -410,7 +428,7 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* Challenge / Approach / Result                                       */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered>
+      <Section bordered spacing="tight-lg">
         <SectionHeading
           eyebrow="Product thinking"
           title="Challenge, approach, result"
@@ -431,12 +449,28 @@ export default function MobileCleanerCaseStudy() {
               body: "An Android build where a user can see precisely what would be removed, choose what actually goes, and read a plain account of what changed.",
             },
           ].map((item, i) => (
-            <li key={item.label} className="flex flex-col gap-4 bg-surface p-8">
-              <span className="font-mono text-sm text-ink-subtle">
+            <li
+              key={item.label}
+              className="relative flex flex-col gap-4 bg-surface p-8 transition-colors duration-300 ease-[var(--ease-out-soft)] hover:bg-elevated lg:p-9"
+            >
+              {/* Teal rule ties the trio to the app identity; the middle card
+                  carries the strongest one so the eye lands on the approach. */}
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "absolute inset-x-0 top-0 h-px",
+                  i === 1
+                    ? "bg-[color-mix(in_oklab,var(--cleaner-accent)_70%,transparent)]"
+                    : "bg-[color-mix(in_oklab,var(--cleaner-accent)_30%,transparent)]",
+                )}
+              />
+              <span className="font-mono text-sm text-[var(--cleaner-accent-text)]">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="text-h3 font-semibold text-ink">{item.label}</h3>
-              <p className="text-pretty text-ink-muted">{item.body}</p>
+              <p className="text-pretty text-[1.0625rem] leading-[1.6] text-ink-muted">
+                {item.body}
+              </p>
             </li>
           ))}
         </ol>
@@ -445,7 +479,7 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* Technology                                                          */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered>
+      <Section bordered spacing="tight-lg">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <SectionHeading
             eyebrow="Technology"
@@ -462,20 +496,41 @@ export default function MobileCleanerCaseStudy() {
             </p>
 
             {project.technologies.length > 0 ? (
+              /* Teal-tinted badges so the stack reads as part of this
+                 project's identity rather than as generic chips. */
               <ul className="mt-8 flex flex-wrap gap-2.5">
                 {project.technologies.map((technology) => (
                   <li key={technology}>
-                    <Badge>{technology}</Badge>
+                    <Badge className="border-[color-mix(in_oklab,var(--cleaner-accent)_30%,transparent)] bg-[color-mix(in_oklab,var(--cleaner-accent)_12%,transparent)] px-3 py-1.5 text-[0.875rem] text-[var(--cleaner-accent-text)]">
+                      {technology}
+                    </Badge>
                   </li>
                 ))}
               </ul>
             ) : null}
 
-            <p className="mt-8 max-w-xl text-pretty text-ink-muted">
-              The shipped manifest requests no internet permission and bundles
-              no analytics or advertising SDK. Every scan runs on the device,
-              and nothing about a user&rsquo;s files can leave it.
-            </p>
+            {/* The privacy property is the strongest verified claim on the
+                page, so it gets a panel instead of a trailing sentence. */}
+            <div className="mt-10 flex gap-4 rounded-lg border border-[color-mix(in_oklab,var(--cleaner-accent)_22%,transparent)] bg-[color-mix(in_oklab,var(--cleaner-accent)_7%,var(--color-surface))] p-6 sm:p-7">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="mt-0.5 size-5 shrink-0 text-[var(--cleaner-accent-text)]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 3 4.5 6v5.5c0 4.4 3.1 8.4 7.5 9.5 4.4-1.1 7.5-5.1 7.5-9.5V6L12 3Z" />
+                <path d="m9.2 12.1 2 2 3.6-3.8" />
+              </svg>
+              <p className="text-pretty text-[1.0625rem] leading-[1.6] text-ink-muted">
+                The shipped manifest requests no internet permission and
+                bundles no analytics or advertising SDK. Every scan runs on the
+                device, and nothing about a user&rsquo;s files can leave it.
+              </p>
+            </div>
           </div>
         </div>
       </Section>
@@ -483,7 +538,7 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* Final CTA                                                           */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered spacing="spacious">
+      <Section bordered spacing="tight-lg">
         <div className="flex flex-col items-center gap-6 text-center">
           <SectionHeading
             align="center"

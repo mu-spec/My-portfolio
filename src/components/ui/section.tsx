@@ -3,12 +3,25 @@ import type { ReactNode } from "react";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/cn";
 
-type SectionSpacing = "compact" | "default" | "spacious";
+type SectionSpacing = "compact" | "default" | "spacious" | "tight" | "tight-lg";
 
+/**
+ * NOTE: `cn` is a plain joiner, not a tailwind-merge. Passing a conflicting
+ * padding utility via `className` will NOT override these — both classes are
+ * emitted and CSS source order decides. Pick the right `spacing` variant
+ * instead of trying to override it downstream.
+ *
+ * `tight` / `tight-lg` were added for the Mobile Cleaner case study, whose
+ * sections are denser than the marketing pages. The existing three variants
+ * are untouched so the homepage and the Electrician case study keep their
+ * approved rhythm exactly.
+ */
 const spacings: Record<SectionSpacing, string> = {
   compact: "py-16 sm:py-20",
   default: "py-20 sm:py-28 lg:py-36",
   spacious: "py-28 sm:py-36 lg:py-48",
+  tight: "py-16 sm:py-20 lg:py-24",
+  "tight-lg": "py-20 sm:py-24 lg:py-28",
 };
 
 interface SectionProps {

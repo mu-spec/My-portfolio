@@ -41,7 +41,13 @@ export function FlowStep({
   last = false,
 }: FlowStepProps) {
   return (
-    <li className="relative grid gap-8 pl-12 sm:pl-16 lg:grid-cols-[1fr_auto] lg:gap-16">
+    /**
+     * The screenshot column is a fixed track (not `auto`) so the real screens
+     * render at a consistent, inspectable size rather than shrinking to their
+     * content box. Aspect ratio is still owned by DeviceFrame, so enlarging
+     * the column scales the capture without distorting it.
+     */
+    <li className="relative grid gap-10 pl-12 sm:pl-16 lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-start lg:gap-14">
       {/* Node + connecting rail */}
       <div
         aria-hidden="true"
@@ -63,7 +69,7 @@ export function FlowStep({
         ) : null}
       </div>
 
-      <div className="pb-4 lg:max-w-lg">
+      <div className="lg:max-w-xl">
         <h3 className="text-h3 font-semibold text-ink">{title}</h3>
         <p className="mt-4 text-pretty text-lead text-ink-muted">{body}</p>
 
@@ -86,16 +92,16 @@ export function FlowStep({
         ) : null}
       </div>
 
-      <div className="w-full max-w-[15rem] justify-self-start lg:w-[15rem] lg:justify-self-end">
+      <div className="w-full max-w-[17rem] justify-self-start sm:max-w-[19rem] lg:w-full lg:max-w-none lg:justify-self-end lg:self-center">
         {screen ? (
           <div className="relative isolate">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 -z-10 [background:radial-gradient(closest-side,color-mix(in_oklab,var(--cleaner-accent)_16%,transparent),transparent_72%)]"
+              className="pointer-events-none absolute inset-0 -z-10 [background:radial-gradient(closest-side,color-mix(in_oklab,var(--cleaner-accent)_18%,transparent),transparent_72%)]"
             />
             <DeviceFrame
               media={screen}
-              sizes="(min-width: 1024px) 15rem, 60vw"
+              sizes="(min-width: 1024px) 21rem, (min-width: 640px) 19rem, 70vw"
             />
           </div>
         ) : (
