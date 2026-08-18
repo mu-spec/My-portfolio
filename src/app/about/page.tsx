@@ -19,6 +19,10 @@ export const metadata: Metadata = {
     description:
       "Mobile app developer taking Android applications from idea and interface design through development, testing and release.",
     type: "profile",
+    /* A page-level openGraph block replaces the inherited
+       opengraph-image.tsx entry, so the generated card is referenced
+       explicitly here to keep summary_large_image valid. */
+    images: ["/opengraph-image"],
   },
 };
 

@@ -38,7 +38,11 @@ interface DistributionActionProps {
 }
 
 const base = [
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap",
+  // max-w-full keeps the control inside its card at very narrow viewports:
+  // at 320px the label plus the version detail exceeded the card width and
+  // was clipped by the card's overflow-hidden. The label itself still never
+  // wraps — only the optional detail is allowed to drop away.
+  "inline-flex max-w-full items-center justify-center gap-2",
   "h-11 rounded-md px-5 text-[0.9375rem] font-medium",
   "border transition-colors duration-200 ease-[var(--ease-out-soft)]",
 ].join(" ");
@@ -80,7 +84,7 @@ export function DistributionAction({
         )}
       >
         {icon}
-        {pendingLabel}
+        <span className="truncate whitespace-nowrap">{pendingLabel}</span>
       </span>
     );
   }
@@ -106,9 +110,11 @@ export function DistributionAction({
       )}
     >
       {icon}
-      {label}
+      <span className="truncate whitespace-nowrap">{label}</span>
       {detail ? (
-        <span className="text-sm font-normal text-ink-subtle">{detail}</span>
+        <span className="hidden truncate text-sm font-normal text-ink-subtle min-[360px]:inline">
+          {detail}
+        </span>
       ) : null}
     </a>
   );

@@ -208,7 +208,7 @@ export default function ElectricianSimulatorCaseStudy() {
                 href={apkHref}
                 detail={apkDetail || undefined}
                 download
-                className="border-transparent bg-accent text-white hover:border-transparent hover:bg-[var(--color-accent-hover)]"
+                className="border-transparent bg-[var(--color-accent-solid)] text-white hover:border-transparent hover:bg-[var(--color-accent-solid-hover)]"
               />
             </div>
           </div>
@@ -414,7 +414,7 @@ export default function ElectricianSimulatorCaseStudy() {
               icon={<DownloadIcon />}
               href={apkHref}
               download
-              className="h-12 border-transparent bg-accent px-7 text-white hover:border-transparent hover:bg-[var(--color-accent-hover)]"
+              className="h-12 border-transparent bg-[var(--color-accent-solid)] px-7 text-white hover:border-transparent hover:bg-[var(--color-accent-solid-hover)]"
             />
             {apkDetail ? (
               <p className="text-sm text-ink-subtle">Android APK · {apkDetail}</p>

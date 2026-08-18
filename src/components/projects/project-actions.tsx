@@ -46,7 +46,7 @@ export function ProjectActions({
         aria-label={`View the ${name} case study`}
         className={cn(
           "inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md px-5",
-          "bg-accent text-[0.9375rem] font-medium text-white",
+          "bg-[var(--color-accent-solid)] text-[0.9375rem] font-medium text-white",
           "shadow-[0_1px_0_0_rgb(255_255_255/0.12)_inset]",
           "transition-colors duration-200 ease-[var(--ease-out-soft)]",
           "hover:bg-[var(--color-accent-hover)] active:translate-y-px",

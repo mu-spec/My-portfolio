@@ -41,10 +41,14 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
   },
+  /**
+   * Only the card type is set globally. Title and description are
+   * deliberately omitted so each page's own metadata (and the title
+   * template) resolves for Twitter too, instead of every page reporting
+   * the site-wide default.
+   */
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.title,
-    description: siteConfig.description,
   },
   /* No verification tokens or structured-data claims are asserted. */
   robots: { index: true, follow: true },
@@ -68,7 +72,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col bg-base text-ink">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2.5 focus:text-sm focus:font-medium focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-[var(--color-accent-solid)] focus:px-4 focus:py-2.5 focus:text-sm focus:font-medium focus:text-white"
         >
           Skip to content
         </a>

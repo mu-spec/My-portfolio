@@ -19,11 +19,20 @@
   /* Typography scale of neutrals — high contrast primary, calm secondary */
   --color-ink: #f2f4f8;
   --color-ink-muted: #a8b0bf;
-  --color-ink-subtle: #6d7686;
+  /* Lightened from #6d7686 so the smallest metadata text clears WCAG AA
+     (4.5:1) on every surface it is used on: base 5.06, surface 4.88,
+     elevated 4.56. Hue is unchanged. */
+  --color-ink-subtle: #778192;
 
   /* Single restrained accent — desaturated electric blue */
   --color-accent: #3d7dfa;
   --color-accent-hover: #5590fb;
+  /* Accent as a *filled surface* under white text. #3d7dfa only reaches
+     3.81:1 with white, so solid controls use these darker steps
+     (4.60:1 and 5.26:1) while --color-accent stays the identity colour
+     for accent-as-text and tints, where it reads 8.1:1 on dark. */
+  --color-accent-solid: #3770e1;
+  --color-accent-solid-hover: #3366d4;
   --color-accent-soft: rgb(61 125 250 / 0.12);
   --color-focus: #7aa8ff;
 
@@ -104,7 +113,7 @@
   }
 
   ::selection {
-    background-color: var(--color-accent);
+    background-color: var(--color-accent-solid);
     color: #fff;
   }
 

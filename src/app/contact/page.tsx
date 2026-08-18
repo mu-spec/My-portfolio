@@ -16,6 +16,10 @@ export const metadata: Metadata = {
     description:
       "Get in touch about mobile application development and Android builds.",
     type: "website",
+    /* A page-level openGraph block replaces the inherited
+       opengraph-image.tsx entry, so the generated card is referenced
+       explicitly here to keep summary_large_image valid. */
+    images: ["/opengraph-image"],
   },
 };
 
@@ -78,7 +82,7 @@ export default function ContactPage() {
                   aria-label={`Email Muhammad Saad at ${email}`}
                   className={cn(
                     "inline-flex h-12 items-center gap-2.5 rounded-md px-7",
-                    "bg-accent text-[0.9375rem] font-medium text-white",
+                    "bg-[var(--color-accent-solid)] text-[0.9375rem] font-medium text-white",
                     "transition-colors duration-200 ease-[var(--ease-out-soft)] hover:bg-[var(--color-accent-hover)]",
                     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]",
                   )}
