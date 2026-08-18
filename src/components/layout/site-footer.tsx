@@ -53,7 +53,7 @@ export function SiteFooter() {
             {email ? (
               <a
                 href={`mailto:${email}`}
-                className="rounded-xs text-sm text-ink-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
+                className="inline-flex min-h-11 items-center break-all rounded-xs text-sm text-ink-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
               >
                 {email}
               </a>

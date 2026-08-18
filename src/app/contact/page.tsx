@@ -75,6 +75,7 @@ export default function ContactPage() {
               <div className="flex flex-col items-start gap-4">
                 <a
                   href={`mailto:${email}`}
+                  aria-label={`Email Muhammad Saad at ${email}`}
                   className={cn(
                     "inline-flex h-12 items-center gap-2.5 rounded-md px-7",
                     "bg-accent text-[0.9375rem] font-medium text-white",
@@ -83,13 +84,16 @@ export default function ContactPage() {
                   )}
                 >
                   <MailIcon />
-                  Email me
+                  Email Me
                 </a>
-                <p className="text-[0.9375rem] text-ink-subtle">
-                  Or write directly to{" "}
+                {/* inline-flex + min-h-11 gives the inline address link a
+                    44px touch target without turning it into a block or
+                    disturbing the surrounding line. */}
+                <p className="flex flex-wrap items-center gap-x-1.5 text-[0.9375rem] text-ink-subtle">
+                  Or write directly to
                   <a
                     href={`mailto:${email}`}
-                    className="rounded-xs text-ink-muted underline decoration-line-strong underline-offset-4 transition-colors hover:text-ink hover:decoration-ink-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]"
+                    className="inline-flex min-h-11 items-center break-all rounded-xs text-ink-muted underline decoration-line-strong underline-offset-4 transition-colors hover:text-ink hover:decoration-ink-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]"
                   >
                     {email}
                   </a>

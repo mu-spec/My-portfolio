@@ -14,16 +14,19 @@
  * fabricated placeholder. The UI cannot render an enabled mailto control
  * without a real address, and no invented address can slip into the build.
  *
- * TO GO LIVE: replace the object below with
- *   { status: "available", email: "you@yourdomain.com" }
- * That single edit wires the Contact page, the header CTA target and the
- * footer simultaneously. Nothing else needs to change.
+ * A verified address is configured, so the Contact page renders a real
+ * "Email Me" control and shows the address, and the footer links to it.
+ * Changing the address here updates every one of those places at once —
+ * no component edits required.
  */
 export type SiteContact =
   | { status: "awaiting-address" }
   | { status: "available"; email: string };
 
-const contact: SiteContact = { status: "awaiting-address" };
+const contact: SiteContact = {
+  status: "available",
+  email: "saaddkhan99@gmail.com",
+};
 
 export const siteConfig = {
   /** Wordmark shown in the header and footer. */
