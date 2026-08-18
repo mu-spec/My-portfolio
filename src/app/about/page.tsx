@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { Portrait } from "@/components/about/portrait";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -68,10 +69,21 @@ export default function AboutPage() {
   return (
     <>
       {/* ------------------------------------------------------------------ */}
-      {/* Intro                                                               */}
+      {/* Intro — portrait + content                                          */}
       {/* ------------------------------------------------------------------ */}
       <Section spacing="tight-lg" className="pt-14 sm:pt-20">
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+        {/*
+          Desktop: a balanced two-column layout, portrait left / content right.
+          The portrait column is capped at 24rem so it supports the copy rather
+          than dominating the page.
+
+          Mobile and tablet: the grid collapses to one column and the portrait
+          renders first in source order, so it naturally stacks above the text
+          without any order juggling.
+        */}
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:items-start lg:gap-16 xl:grid-cols-[minmax(0,24rem)_minmax(0,1fr)]">
+          <Portrait className="max-w-[17rem] sm:max-w-[20rem] lg:max-w-none" />
+
           <div>
             <span className="text-sm font-medium text-[var(--color-focus)]">
               About
@@ -82,28 +94,29 @@ export default function AboutPage() {
             <p className="mt-4 text-h3 font-medium text-ink-muted">
               {siteConfig.role}
             </p>
-          </div>
 
-          <div className="flex flex-col gap-5 text-pretty text-lead text-ink-muted">
-            <p>
-              I build mobile applications, and I take them the whole way: from
-              the initial idea and interface design, through development and
-              testing, to a working Android build that can be installed and
-              used.
-            </p>
-            <p>
-              That end-to-end scope is deliberate. Deciding how a screen should
-              behave, structuring the code behind it, and getting the result
-              onto a real device are not separate problems — the decisions made
-              in one constrain the others. Working across all of them means the
-              product that ships is the product that was designed.
-            </p>
-            <p>
-              The two applications in this portfolio were built that way. Each
-              one is a complete Android build with its own interface, its own
-              engineering decisions, and a case study explaining the reasoning
-              rather than just showing the result.
-            </p>
+            <div className="mt-8 flex flex-col gap-5 text-pretty text-lead text-ink-muted">
+              <p>
+                I build mobile applications, and I take them the whole way:
+                from the initial idea and interface design, through development
+                and testing, to a working Android build that can be installed
+                and used.
+              </p>
+              <p>
+                That end-to-end scope is deliberate. Deciding how a screen
+                should behave, structuring the code behind it, and getting the
+                result onto a real device are not separate problems — the
+                decisions made in one constrain the others. Working across all
+                of them means the product that ships is the product that was
+                designed.
+              </p>
+              <p>
+                The two applications in this portfolio were built that way.
+                Each one is a complete Android build with its own interface,
+                its own engineering decisions, and a case study explaining the
+                reasoning rather than just showing the result.
+              </p>
+            </div>
           </div>
         </div>
       </Section>
