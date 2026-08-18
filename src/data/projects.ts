@@ -136,24 +136,47 @@ export const projects: readonly Project[] = [
     tagline: "",
     summary: "",
     featured: false,
-    technologies: [],
+    // Verified by inspecting the shipped release binary itself, NOT copied
+    // from the other project — the two apps genuinely differ (this one uses
+    // Riverpod, the Electrician app uses BLoC/Cubit). Evidence, in order:
+    // lib/*/libflutter.so + assets/flutter_assets  -> Flutter / Dart
+    // NOTICES bundle lists flutter_riverpod, riverpod, state_notifier
+    //                       go_router, shared_preferences, path_provider,
+    //                       permission_handler, device_info_plus
+    // kotlin-tooling-metadata.json (Gradle, KotlinAndroidPlugin) -> Kotlin
+    // AndroidManifest declares NO android.permission.INTERNET, and no
+    // analytics/ads SDKs are present -> fully on-device / offline.
+    // sqflite is absent, so no SQLite claim is made.
+    technologies: [
+      "Flutter",
+      "Dart",
+      "Riverpod",
+      "go_router",
+      "Kotlin (Android layer)",
+      "permission_handler",
+      "shared_preferences",
+      "Fully on-device",
+    ],
     highlights: [],
     media: [
       {
+        key: "photos",
         src: "/screenshots/mobile-cleaner-photos.png",
         alt: "Mobile Cleaner photos screen showing Photo Cleanup totalling 152.8 MB across 141 photos, broken down into duplicate, screenshot, large and similar photos.",
         width: 720,
         height: 1432,
       },
       {
+        key: "files",
         src: "/screenshots/mobile-cleaner-files.png",
-        alt: "Mobile Cleaner files screen listing Large Files, Downloads Cleaner, APK Cleaner, Videos and Duplicates tools.",
+        alt: "Mobile Cleaner Files screen showing 868 files totalling 2.1 GB on the phone, with Large Files, Downloads Cleaner, APK Cleaner, Videos and Duplicates tools listed below.",
         width: 720,
         height: 1432,
       },
       {
+        key: "cleanup-complete",
         src: "/screenshots/mobile-cleaner-cleanup-complete.png",
-        alt: "Mobile Cleaner cleanup complete screen confirming files deleted, storage recovered and free storage remaining.",
+        alt: "Mobile Cleaner cleanup complete screen with a checkmark, confirming the number of files deleted, the storage recovered and the free storage remaining, above a Done button.",
         width: 720,
         height: 1432,
       },
