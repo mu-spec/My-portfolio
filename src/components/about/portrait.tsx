@@ -24,7 +24,25 @@ const PORTRAIT = {
   alt: "Muhammad Saad, Mobile App Developer",
 } as const;
 
-export function Portrait({ className }: { className?: string }) {
+interface PortraitProps {
+  className?: string;
+  /**
+   * Eager-load the image. True on the About page, where the portrait is
+   * above the fold and is the LCP candidate. The homepage teaser passes
+   * false: that instance sits well below the fold, so preloading it would
+   * compete with the hero for bandwidth and trigger an unused-preload
+   * warning.
+   */
+  priority?: boolean;
+  /** Responsive width hint; the teaser renders far smaller than About. */
+  sizes?: string;
+}
+
+export function Portrait({
+  className,
+  priority = true,
+  sizes = "(min-width: 1024px) 24rem, (min-width: 640px) 20rem, 80vw",
+}: PortraitProps) {
   return (
     <div className={cn("relative isolate w-full", className)}>
       {/* Restrained accent wash, consistent with the case-study compositions. */}
@@ -46,8 +64,8 @@ export function Portrait({ className }: { className?: string }) {
           width={PORTRAIT.width}
           height={PORTRAIT.height}
           quality={90}
-          priority
-          sizes="(min-width: 1024px) 24rem, (min-width: 640px) 20rem, 80vw"
+          priority={priority}
+          sizes={sizes}
           className="h-full w-full object-cover"
         />
       </div>

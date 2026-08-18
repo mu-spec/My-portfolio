@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
+import { AboutTeaser } from "@/components/home/about-teaser";
 import { Hero } from "@/components/home/hero";
 import { SelectedWork } from "@/components/home/selected-work";
+import { TechnologyStrip } from "@/components/home/technology-strip";
 
 export const metadata: Metadata = {
   description:
@@ -12,14 +14,17 @@ export const metadata: Metadata = {
 /**
  * Homepage.
  *
- * The hero and the Selected Work showcase. About and Contact are dedicated
- * routes (/about, /contact) rather than homepage sections.
+ * Hero, Selected Work, a compact technology strip and a short About teaser.
+ * About and Contact remain dedicated routes — the teaser is a pointer to
+ * /about, not a duplicate of it.
  */
 export default function HomePage() {
   return (
     <>
       <Hero />
       <SelectedWork />
+      <TechnologyStrip />
+      <AboutTeaser />
     </>
   );
 }

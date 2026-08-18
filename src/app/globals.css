@@ -148,3 +148,125 @@
     transparent
   );
 }
+
+/* ==========================================================================
+   Depth & motion
+   --------------------------------------------------------------------------
+   A restrained 3D system for the hero composition and the project
+   screenshot stacks. Only `transform` is animated, so nothing here can
+   cause layout shift, and every effect is GPU friendly.
+
+   Structure:
+     .tilt-stage  establishes the shared perspective (never transformed)
+     .tilt-inner  receives the pointer-driven rotation
+     .tilt-layer  children pushed to different Z depths, so they parallax
+                  against each other as the parent rotates
+
+   All of it is inert without a fine pointer, and fully disabled under
+   prefers-reduced-motion.
+   ========================================================================== */
+
+.tilt-stage {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
+
+.tilt-inner {
+  transform-style: preserve-3d;
+  /* Slow, soft return to neutral when the pointer leaves; the tracking
+     state shortens this so the tilt still feels responsive in motion. */
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.tilt-inner[data-tracking="true"] {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Depth offsets. Small values: the goal is separation, not a diorama. */
+.tilt-layer {
+  transform-style: preserve-3d;
+}
+.tilt-layer-back {
+  transform: translateZ(-28px);
+}
+.tilt-layer-mid {
+  transform: translateZ(14px);
+}
+.tilt-layer-front {
+  transform: translateZ(42px);
+}
+
+/* Gentle idle float. Two different durations and delays keep the hero
+   elements from moving in lockstep, which is what makes a composition
+   read as mechanical. */
+@keyframes float-soft {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+.float-slow,
+.float-slower {
+  animation: float-soft 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+.float-slower {
+  animation-duration: 12s;
+  animation-delay: -3s;
+}
+
+/*
+  Screenshot stacks: hover lifts the foreground device slightly forward and
+  eases the supporting devices back, so the group gains depth without any
+  device moving far enough to hurt readability.
+*/
+.depth-group .depth-front {
+  transition:
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.depth-group .depth-back {
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .depth-group:hover .depth-front {
+    transform: translateZ(34px) translateY(-6px);
+  }
+
+  .depth-group:hover .depth-back {
+    transform: translateZ(-18px) scale(0.985);
+  }
+}
+
+/*
+  Reduced motion: remove every non-essential effect defined above. The
+  global rule earlier in this file collapses durations, but these also
+  need their transforms and animations neutralised so nothing is left
+  displaced or mid-float.
+*/
+@media (prefers-reduced-motion: reduce) {
+  .tilt-inner,
+  .tilt-layer-back,
+  .tilt-layer-mid,
+  .tilt-layer-front {
+    transform: none !important;
+  }
+
+  .float-slow,
+  .float-slower {
+    animation: none !important;
+  }
+
+  .depth-group:hover .depth-front,
+  .depth-group:hover .depth-back {
+    transform: none !important;
+  }
+}

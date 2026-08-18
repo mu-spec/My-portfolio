@@ -38,7 +38,10 @@ export const projects: readonly Project[] = [
     slug: "electrician-simulator-app",
     name: "Electrician Simulator App",
     category: "Mobile Utility / Educational App",
-    tagline: "",
+    // Describes only what the captured screens show: Theory Academy,
+    // Calculators, Wiring Diagrams and Quiz & Practice. No metrics.
+    tagline:
+      "Electrical theory, practical calculators, wiring references and quiz practice, together in one offline Android app.",
     summary: "",
     featured: true,
     // Confirmed by the project owner. Displayed on the case study only.
@@ -133,7 +136,11 @@ export const projects: readonly Project[] = [
     slug: "mobile-cleaner",
     name: "Mobile Cleaner",
     category: "Mobile Utility App",
-    tagline: "",
+    // Mirrors the approved case-study flow: inspect, review, confirm,
+    // then delete. Deliberately states that nothing is removed without
+    // confirmation, which the Safety Gate section documents.
+    tagline:
+      "Inspect the files and photos on your phone, review what is worth removing, then delete only what you confirm.",
     summary: "",
     featured: false,
     // Verified by inspecting the shipped release binary itself, NOT copied

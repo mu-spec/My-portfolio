@@ -1,3 +1,4 @@
+import { Tilt } from "@/components/motion/tilt";
 import { cn } from "@/lib/cn";
 
 /**
@@ -10,12 +11,19 @@ import { cn } from "@/lib/cn";
  *
  * Decorative by definition, so the whole composition is aria-hidden and
  * carries no semantic weight for screen readers.
+ *
+ * DEPTH: the composition itself is unchanged — same devices, same offsets,
+ * same rotations. It is wrapped in <Tilt>, and each element is assigned a
+ * Z depth so the layers parallax against one another under a shared
+ * perspective. The two floating animations use different periods so the
+ * group never moves in lockstep. All of it is inert on touch devices and
+ * under prefers-reduced-motion.
  */
 export function HeroVisual({ className }: { className?: string }) {
   return (
     <div
       aria-hidden="true"
-      className={cn("relative select-none overflow-hidden", className)}
+      className={cn("relative select-none", className)}
     >
       {/* Soft accent wash behind the devices, kept low-contrast so the
           composition reads as depth rather than a glow effect. */}
@@ -27,23 +35,31 @@ export function HeroVisual({ className }: { className?: string }) {
         }}
       />
 
-      <div className="relative mx-auto flex aspect-4/5 w-full max-w-[26rem] items-center justify-center">
-        {/* Secondary device — offset behind to create depth */}
-        <DeviceFrame
-          className="absolute left-0 top-8 w-[52%] rotate-[-6deg] opacity-70"
-          tone="muted"
-        >
-          <PanelLines />
-        </DeviceFrame>
+      <Tilt max={5}>
+        <div className="relative mx-auto flex aspect-4/5 w-full max-w-[26rem] items-center justify-center">
+          {/* Secondary device — furthest back, drifts most under rotation */}
+          <div className="tilt-layer tilt-layer-back absolute left-0 top-8 w-[52%] float-slower">
+            <DeviceFrame
+              className="w-full rotate-[-6deg] opacity-70"
+              tone="muted"
+            >
+              <PanelLines />
+            </DeviceFrame>
+          </div>
 
-        {/* Primary device — the focal point */}
-        <DeviceFrame className="relative z-10 w-[62%] translate-y-2" tone="primary">
-          <PanelPrimary />
-        </DeviceFrame>
+          {/* Primary device — the focal point */}
+          <div className="tilt-layer tilt-layer-mid relative z-10 w-[62%] translate-y-2">
+            <DeviceFrame className="w-full" tone="primary">
+              <PanelPrimary />
+            </DeviceFrame>
+          </div>
 
-        {/* Floating detail card, bottom right */}
-        <FloatingCard className="absolute -right-1 bottom-10 z-20 w-[46%] sm:right-2" />
-      </div>
+          {/* Floating detail card — nearest the viewer */}
+          <div className="tilt-layer tilt-layer-front absolute -right-1 bottom-10 z-20 w-[46%] float-slow sm:right-2">
+            <FloatingCard className="w-full" />
+          </div>
+        </div>
+      </Tilt>
     </div>
   );
 }

@@ -11,6 +11,10 @@ import {
 } from "@/components/projects/distribution-action";
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
+import {
+  CaseStudySectionNav,
+  type SectionNavItem,
+} from "@/components/case-study/section-nav";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getProjectBySlug } from "@/data/projects";
@@ -138,6 +142,19 @@ const ENGINEERING_POINTS = [
   },
 ] as const;
 
+/**
+ * In-page navigator targets. Each id matches a real <Section id> below —
+ * the approved section order and content are unchanged.
+ */
+const SECTION_NAV: SectionNavItem[] = [
+  { id: "overview", label: "Overview" },
+  { id: "features", label: "Features" },
+  { id: "flow", label: "The flow" },
+  { id: "engineering", label: "Engineering" },
+  { id: "technology", label: "Technology" },
+  { id: "download", label: "Download" },
+];
+
 export default function MobileCleanerCaseStudy() {
   if (!project) {
     notFound();
@@ -248,10 +265,12 @@ export default function MobileCleanerCaseStudy() {
         </div>
       </Section>
 
+      <CaseStudySectionNav items={SECTION_NAV} />
+
       {/* ------------------------------------------------------------------ */}
       {/* Overview                                                            */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered spacing="tight-lg">
+      <Section id="overview" bordered spacing="tight-lg">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <SectionHeading
             eyebrow="Overview"
@@ -285,7 +304,7 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* Core functionality                                                  */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered spacing="tight-lg">
+      <Section id="features" bordered spacing="tight-lg">
         <SectionHeading
           eyebrow="Core functionality"
           title="What it looks for"
@@ -331,7 +350,7 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* Walkthrough — vertical flow                                         */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered spacing="tight-lg">
+      <Section id="flow" bordered spacing="tight-lg">
         <SectionHeading
           eyebrow="The flow"
           title="Inspect, review, then clean"
@@ -376,7 +395,7 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* UX / engineering                                                    */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered spacing="tight-lg">
+      <Section id="engineering" bordered spacing="tight-lg">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <SectionHeading
             eyebrow="UX & engineering"
@@ -428,7 +447,7 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* Challenge / Approach / Result                                       */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered spacing="tight-lg">
+      <Section id="thinking" bordered spacing="tight-lg">
         <SectionHeading
           eyebrow="Product thinking"
           title="Challenge, approach, result"
@@ -479,7 +498,7 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* Technology                                                          */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered spacing="tight-lg">
+      <Section id="technology" bordered spacing="tight-lg">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <SectionHeading
             eyebrow="Technology"
@@ -538,7 +557,7 @@ export default function MobileCleanerCaseStudy() {
       {/* ------------------------------------------------------------------ */}
       {/* Final CTA                                                           */}
       {/* ------------------------------------------------------------------ */}
-      <Section bordered spacing="tight-lg">
+      <Section id="download" bordered spacing="tight-lg">
         <div className="flex flex-col items-center gap-6 text-center">
           <SectionHeading
             align="center"

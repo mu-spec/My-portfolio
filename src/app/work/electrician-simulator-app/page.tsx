@@ -10,6 +10,10 @@ import {
 } from "@/components/projects/distribution-action";
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
+import {
+  CaseStudySectionNav,
+  type SectionNavItem,
+} from "@/components/case-study/section-nav";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getProjectBySlug } from "@/data/projects";
@@ -122,6 +126,19 @@ const ENGINEERING_POINTS = [
   },
 ] as const;
 
+/**
+ * In-page navigator targets. Each id matches a real <Section id> below —
+ * no section was added, renamed or restructured to accommodate this.
+ */
+const SECTION_NAV: SectionNavItem[] = [
+  { id: "overview", label: "Overview" },
+  { id: "features", label: "Core areas" },
+  { id: "screens", label: "Screens" },
+  { id: "technology", label: "Technology" },
+  { id: "thinking", label: "Product thinking" },
+  { id: "download", label: "Download" },
+];
+
 export default function ElectricianSimulatorCaseStudy() {
   if (!project) {
     notFound();
@@ -220,10 +237,12 @@ export default function ElectricianSimulatorCaseStudy() {
         </div>
       </Section>
 
+      <CaseStudySectionNav items={SECTION_NAV} />
+
       {/* ---------------------------------------------------------------- */}
       {/* Overview                                                          */}
       {/* ---------------------------------------------------------------- */}
-      <Section bordered>
+      <Section id="overview" bordered>
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <SectionHeading
             eyebrow="Overview"
@@ -250,7 +269,7 @@ export default function ElectricianSimulatorCaseStudy() {
       {/* ---------------------------------------------------------------- */}
       {/* Application areas                                                 */}
       {/* ---------------------------------------------------------------- */}
-      <Section bordered>
+      <Section id="features" bordered>
         <SectionHeading
           eyebrow="Core areas"
           title="What the application covers"
@@ -276,7 +295,7 @@ export default function ElectricianSimulatorCaseStudy() {
       {/* ---------------------------------------------------------------- */}
       {/* Walkthrough                                                       */}
       {/* ---------------------------------------------------------------- */}
-      <Section bordered spacing="spacious">
+      <Section id="screens" bordered spacing="spacious">
         <SectionHeading
           eyebrow="Inside the app"
           title="Learn, calculate, reference, practise"
@@ -326,7 +345,7 @@ export default function ElectricianSimulatorCaseStudy() {
       {/* ---------------------------------------------------------------- */}
       {/* Technology                                                        */}
       {/* ---------------------------------------------------------------- */}
-      <Section bordered>
+      <Section id="technology" bordered>
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <SectionHeading
             eyebrow="Technology"
@@ -364,7 +383,7 @@ export default function ElectricianSimulatorCaseStudy() {
       {/* ---------------------------------------------------------------- */}
       {/* Challenge / Approach / Result                                     */}
       {/* ---------------------------------------------------------------- */}
-      <Section bordered>
+      <Section id="thinking" bordered>
         <SectionHeading eyebrow="Product thinking" title="Challenge, approach, result" />
 
         <ol className="mt-14 grid gap-px overflow-hidden rounded-lg border border-line bg-line lg:grid-cols-3">
@@ -396,7 +415,7 @@ export default function ElectricianSimulatorCaseStudy() {
       {/* ---------------------------------------------------------------- */}
       {/* Final CTA                                                         */}
       {/* ---------------------------------------------------------------- */}
-      <Section bordered spacing="spacious">
+      <Section id="download" bordered spacing="spacious">
         <div className="flex flex-col items-center gap-6 text-center">
           <SectionHeading
             align="center"

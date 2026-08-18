@@ -22,6 +22,16 @@ interface ProjectShowcaseProps {
  *  - electrician-simulator-app: a centred hero screen with two tilted screens
  *    fanned out behind it.
  *  - mobile-cleaner: an ascending left-to-right cascade with a uniform tilt.
+ *
+ * DEPTH: the geometry above is unchanged. A shared perspective is added on
+ * the container and each frame is tagged depth-front / depth-back, so on
+ * hover with a fine pointer the foreground device eases forward and the
+ * supporting devices settle back. Tailwind v4 emits `rotate:` and
+ * `translate:` as independent CSS properties, so these `transform` values
+ * compose with the existing tilts instead of overwriting them.
+ *
+ * Movement is a few pixels only — never enough to make a screen harder to
+ * read — and is disabled on touch and under prefers-reduced-motion.
  */
 export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
   const [primary, secondary, supporting] = project.media;
@@ -43,6 +53,8 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
         // Square at every size: the frame geometry below is expressed in
         // percentages tuned to fill this box without dead space.
         "aspect-square",
+        // Shared perspective + hover depth for the frames inside.
+        "depth-group [perspective:1400px]",
         className,
       )}
     >
@@ -64,7 +76,7 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
             <DeviceFrame
               media={supporting}
               sizes={sizes}
-              className="absolute left-[0%] top-[21%] z-10 w-[39%] rotate-[-4deg]"
+              className="depth-back absolute left-[0%] top-[21%] z-10 w-[39%] rotate-[-4deg]"
             />
           ) : null}
 
@@ -73,7 +85,7 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
             <DeviceFrame
               media={secondary}
               sizes={sizes}
-              className="absolute left-[30%] top-[11%] z-20 w-[41%] rotate-[-4deg]"
+              className="depth-back absolute left-[30%] top-[11%] z-20 w-[41%] rotate-[-4deg]"
             />
           ) : null}
 
@@ -82,7 +94,7 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
             media={primary}
             sizes={sizes}
             priority
-            className="absolute left-[57%] top-[1%] z-30 w-[43%] rotate-[-4deg]"
+            className="depth-front absolute left-[57%] top-[1%] z-30 w-[43%] rotate-[-4deg]"
           />
         </>
       ) : (
@@ -92,7 +104,7 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
             <DeviceFrame
               media={supporting}
               sizes={sizes}
-              className="absolute left-[0%] top-[15%] z-10 w-[41%] rotate-[-8deg]"
+              className="depth-back absolute left-[0%] top-[15%] z-10 w-[41%] rotate-[-8deg]"
             />
           ) : null}
 
@@ -101,7 +113,7 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
             <DeviceFrame
               media={secondary}
               sizes={sizes}
-              className="absolute right-[0%] top-[15%] z-10 w-[41%] rotate-[8deg]"
+              className="depth-back absolute right-[0%] top-[15%] z-10 w-[41%] rotate-[8deg]"
             />
           ) : null}
 
@@ -110,7 +122,7 @@ export function ProjectShowcase({ project, className }: ProjectShowcaseProps) {
             media={primary}
             sizes={sizes}
             priority
-            className="absolute left-1/2 top-[1%] z-30 w-[46%] -translate-x-1/2"
+            className="depth-front absolute left-1/2 top-[1%] z-30 w-[46%] -translate-x-1/2"
           />
         </>
       )}
