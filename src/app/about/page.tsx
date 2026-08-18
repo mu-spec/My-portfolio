@@ -86,7 +86,10 @@ export default function AboutPage() {
           without any order juggling.
         */}
         <div className="grid gap-12 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:items-start lg:gap-16 xl:grid-cols-[minmax(0,24rem)_minmax(0,1fr)]">
-          <Portrait className="max-w-[17rem] sm:max-w-[20rem] lg:max-w-none" />
+          <Portrait
+            dimensional
+            className="max-w-[17rem] sm:max-w-[20rem] lg:max-w-none"
+          />
 
           <div>
             <span className="text-sm font-medium text-[var(--color-focus)]">
