@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { getContactEmail, siteConfig } from "@/config/site";
+import { getContactEmail, getGmailComposeUrl, siteConfig } from "@/config/site";
 import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = {
@@ -49,6 +49,9 @@ const SERVICES = [
 
 export default function ContactPage() {
   const email = getContactEmail();
+  // Gmail web compose rather than mailto:, so the action works even when the
+  // visitor has no desktop mail client registered for the mailto: protocol.
+  const composeUrl = getGmailComposeUrl();
 
   return (
     <>
@@ -78,8 +81,10 @@ export default function ContactPage() {
             {email ? (
               <div className="flex flex-col items-start gap-4">
                 <a
-                  href={`mailto:${email}`}
-                  aria-label={`Email Muhammad Saad at ${email}`}
+                  href={composeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Email Muhammad Saad at ${email} (opens Gmail in a new tab)`}
                   className={cn(
                     "inline-flex h-12 items-center gap-2.5 rounded-md px-7",
                     "bg-[var(--color-accent-solid)] text-[0.9375rem] font-medium text-white",
@@ -96,7 +101,10 @@ export default function ContactPage() {
                 <p className="flex flex-wrap items-center gap-x-1.5 text-[0.9375rem] text-ink-subtle">
                   Or write directly to
                   <a
-                    href={`mailto:${email}`}
+                    href={composeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Email Muhammad Saad at ${email} (opens Gmail in a new tab)`}
                     className="inline-flex min-h-11 items-center break-all rounded-xs text-ink-muted underline decoration-line-strong underline-offset-4 transition-colors hover:text-ink hover:decoration-ink-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]"
                   >
                     {email}

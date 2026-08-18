@@ -72,3 +72,27 @@ export function getContactEmail(): string | undefined {
     ? siteConfig.contact.email
     : undefined;
 }
+
+/**
+ * Gmail web compose URL for the verified address.
+ *
+ * A plain `mailto:` depends on the visitor having a desktop mail client
+ * registered for the protocol. On a machine without one — common on desktop
+ * browsers — the link silently does nothing, which is what was reported.
+ * Sending visitors to Gmail's web compose window guarantees a usable compose
+ * experience in the browser.
+ *
+ * `view=cm` opens the standalone compose view and `fs=1` makes it a full
+ * compose window. `authuser` is deliberately omitted so Gmail resolves the
+ * visitor's own signed-in account (and prompts a sign-in when there is none)
+ * rather than assuming an account index.
+ *
+ * Returns undefined when no verified address is configured, so the UI can
+ * keep its existing "no fabricated contact control" guarantee.
+ */
+export function getGmailComposeUrl(): string | undefined {
+  const email = getContactEmail();
+  if (!email) return undefined;
+
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
+}
