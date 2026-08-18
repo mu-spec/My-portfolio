@@ -17,11 +17,19 @@ import { cn } from "@/lib/cn";
  * stretch — it is simply a safety net if the frame ratio is ever changed.
  */
 
-/** Intrinsic dimensions of the supplied file. Do not change independently. */
+/**
+ * Intrinsic dimensions of the supplied file. Do not change independently.
+ *
+ * These MUST match the real file: the frame's aspectRatio is derived from
+ * them, and object-cover would silently crop the portrait if they drifted.
+ * The final portrait is 1122x1402 (~0.800), a different ratio from the
+ * earlier 1086x1448 (0.750) image it replaces — so both values were
+ * updated together with the filename.
+ */
 const PORTRAIT = {
-  src: "/portrait/muhammad-saad.png",
-  width: 1086,
-  height: 1448,
+  src: "/portrait/muhammad-saad-v2.png",
+  width: 1122,
+  height: 1402,
   alt: "Muhammad Saad, Mobile App Developer",
 } as const;
 
