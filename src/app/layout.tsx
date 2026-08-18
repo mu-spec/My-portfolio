@@ -20,6 +20,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  /**
+   * Resolves every relative canonical and Open Graph URL against the live
+   * deployment. Without this Next falls back to http://localhost:3000 and
+   * emits a build warning.
+   */
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.title,
     template: `%s — ${siteConfig.name}`,
@@ -28,6 +34,20 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
+  openGraph: {
+    type: "website",
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  /* No verification tokens or structured-data claims are asserted. */
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {

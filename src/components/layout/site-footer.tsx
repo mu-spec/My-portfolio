@@ -1,16 +1,18 @@
+import { NavLink } from "@/components/layout/nav-link";
 import { Container } from "@/components/ui/container";
 import { primaryNav } from "@/config/navigation";
-import { siteConfig } from "@/config/site";
+import { getContactEmail, siteConfig } from "@/config/site";
 
 /**
- * Footer foundation.
+ * Site footer.
  *
- * Contains only verified information: the wordmark, the reserved section
- * links and the confirmed GitHub profile. Contact details and social links
- * are added in a later milestone once verified.
+ * Contains only verified information: the wordmark, the role, the primary
+ * navigation and — once configured — a direct email link. Application source
+ * repositories are private and are never linked here.
  */
 export function SiteFooter() {
   const year = new Date().getFullYear();
+  const email = getContactEmail();
 
   return (
     <footer className="mt-auto border-t border-line">
@@ -28,25 +30,34 @@ export function SiteFooter() {
               <ul className="flex flex-wrap gap-x-6 gap-y-3">
                 {primaryNav.map((item) => (
                   <li key={item.href}>
-                    <a
+                    <NavLink
                       href={item.href}
                       className="rounded-xs text-[0.9375rem] text-ink-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
+                      activeClassName="text-ink"
                     >
                       {item.label}
-                    </a>
+                    </NavLink>
                   </li>
                 ))}
               </ul>
             </nav>
           </div>
 
-          {/* Contact details and any approved profile links are added in a
-              later milestone. Source repositories are private and are never
-              linked here. */}
-          <div className="border-t border-line pt-8">
+          {/* Only a verified address is ever rendered. No profile or
+              repository links: application source stays private. */}
+          <div className="flex flex-col gap-4 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-ink-subtle">
               © {year} {siteConfig.name}
             </p>
+
+            {email ? (
+              <a
+                href={`mailto:${email}`}
+                className="rounded-xs text-sm text-ink-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
+              >
+                {email}
+              </a>
+            ) : null}
           </div>
         </div>
       </Container>

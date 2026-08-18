@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 
+import { NavLink } from "@/components/layout/nav-link";
 import { Button } from "@/components/ui/button";
 import { primaryCta, primaryNav } from "@/config/navigation";
 import { cn } from "@/lib/cn";
@@ -85,7 +86,7 @@ export function MobileNav() {
             <ul className="flex flex-col">
               {primaryNav.map((item) => (
                 <li key={item.href} className="border-b border-line last:border-0">
-                  <a
+                  <NavLink
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className={cn(
@@ -93,9 +94,10 @@ export function MobileNav() {
                       "transition-colors hover:text-ink",
                       "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]",
                     )}
+                    activeClassName="text-ink"
                   >
                     {item.label}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>

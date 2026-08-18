@@ -1,9 +1,13 @@
 /**
  * Navigation model.
  *
- * Section routes are declared here so the header, footer and future in-page
- * navigation all read from one source. Sections are implemented in later
- * milestones; the routes are reserved now so the structure stays stable.
+ * The header, footer and mobile disclosure all read from this file, so a
+ * route change happens in exactly one place.
+ *
+ * P4: About and Contact are now real routes (/about, /contact). They were
+ * previously reserved anchors (/#about, /#contact) pointing at sections that
+ * did not exist, which meant both header links silently did nothing. Those
+ * dead anchors are gone.
  */
 
 export interface NavItem {
@@ -15,26 +19,20 @@ export interface NavItem {
 export const primaryNav: readonly NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
-  { label: "Contact", href: "/#contact" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
-/**
- * Reserved section anchors for the future single-page structure.
- * Skills is not in the header nav but is part of the planned page structure.
- */
+/** In-page section anchors that actually exist on the homepage. */
 export const sectionIds = {
   home: "home",
   work: "work",
-  about: "about",
-  skills: "skills",
-  contact: "contact",
 } as const;
 
 export type SectionId = (typeof sectionIds)[keyof typeof sectionIds];
 
-/** Header call-to-action. Wired to the contact section in a later milestone. */
+/** Header call-to-action. Points at the Contact route. */
 export const primaryCta: NavItem = {
   label: "Let's Talk",
-  href: "/#contact",
+  href: "/contact",
 };

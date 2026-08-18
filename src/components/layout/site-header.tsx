@@ -1,5 +1,6 @@
 import { Logo } from "@/components/layout/logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { NavLink } from "@/components/layout/nav-link";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { primaryCta, primaryNav } from "@/config/navigation";
@@ -21,12 +22,13 @@ export function SiteHeader() {
             <ul className="flex items-center gap-1">
               {primaryNav.map((item) => (
                 <li key={item.href}>
-                  <a
+                  <NavLink
                     href={item.href}
                     className="inline-flex h-10 items-center rounded-md px-3.5 text-[0.9375rem] font-medium text-ink-muted transition-colors hover:bg-elevated hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]"
+                    activeClassName="bg-elevated text-ink"
                   >
                     {item.label}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>

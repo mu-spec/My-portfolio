@@ -1,7 +1,7 @@
 import { HeroVisual } from "@/components/home/hero-visual";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { sectionIds } from "@/config/navigation";
+import { primaryCta, sectionIds } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 
 /**
@@ -59,11 +59,9 @@ export function Hero() {
               <Button href={`/#${sectionIds.work}`} size="lg">
                 View My Work
               </Button>
-              <Button
-                href={`/#${sectionIds.contact}`}
-                size="lg"
-                variant="secondary"
-              >
+              {/* Reads from the shared CTA config so the hero, header and
+                  mobile nav can never drift to different destinations. */}
+              <Button href={primaryCta.href} size="lg" variant="secondary">
                 Let&apos;s Talk
               </Button>
             </div>
