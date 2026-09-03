@@ -105,6 +105,22 @@ export const moreProjects: readonly MoreProject[] = [
       "https://play.google.com/store/apps/details?id=com.freeman.moneymanager&hl=en",
     order: 6,
   },
+  {
+    slug: "ai-english-language-learning",
+    name: "AI English Language Learning",
+    category: "AI & Language Learning",
+    description:
+      "An AI-powered English learning app that helps users improve speaking, vocabulary and grammar through interactive practice. Personalized lessons, progress tracking and practical exercises create an engaging learning experience.",
+    image: {
+      src: "/images/ai-english-language-learning.png",
+      alt: "AI English Language Learning portfolio image: three Android phones showing the AI English Tutor home screen with a practice streak, speaking and grammar scores and achievements, the lessons list with scenario-based conversation lessons, and the vocabulary practice screen with a word, example sentence and skip and next word actions.",
+      width: 1536,
+      height: 1024,
+    },
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=dev.aitutor.languagelearning&hl=en",
+    order: 7,
+  },
 ] as const;
 
 /** Projects in display order. */
