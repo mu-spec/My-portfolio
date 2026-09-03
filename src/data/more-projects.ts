@@ -121,6 +121,22 @@ export const moreProjects: readonly MoreProject[] = [
       "https://play.google.com/store/apps/details?id=dev.aitutor.languagelearning&hl=en",
     order: 7,
   },
+  {
+    slug: "octopus-electroverse",
+    name: "Octopus Electroverse",
+    category: "EV Charging & Navigation",
+    description:
+      "An EV charging and navigation app that helps drivers discover compatible charging stations, check charger availability and plan efficient routes. Interactive maps, charger details and in-app charging make public EV charging easier to manage.",
+    image: {
+      src: "/images/octopus-electroverse.png",
+      alt: "Octopus Electroverse portfolio image: three Android phones showing the welcome screen with industry awards and get started and log in actions, the map view with charging station markers across the UK and a recommended charger card, and the charger details screen with power, connector, availability, pricing and amenities.",
+      width: 1536,
+      height: 1024,
+    },
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=energy.octopus.electricjuice.android&hl=en",
+    order: 8,
+  },
 ] as const;
 
 /** Projects in display order. */
