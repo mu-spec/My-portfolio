@@ -137,6 +137,22 @@ export const moreProjects: readonly MoreProject[] = [
       "https://play.google.com/store/apps/details?id=energy.octopus.electricjuice.android&hl=en",
     order: 8,
   },
+  {
+    slug: "opentable",
+    name: "OpenTable",
+    category: "Restaurant Booking & Discovery",
+    description:
+      "A restaurant discovery and reservation app that helps users find nearby dining options, explore restaurant details and book available tables with ease. Location-based search, filters and reservation management create a convenient dining experience.",
+    image: {
+      src: "/images/opentable.png",
+      alt: "OpenTable portfolio image: three Android phones showing the welcome screen with a dining photo and find a table action, the home screen with popular nearby restaurants and available time slots, and the restaurant details screen with reviews, address, reservation time slots and a make a reservation button.",
+      width: 1536,
+      height: 1024,
+    },
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=com.opentable&hl=en",
+    order: 9,
+  },
 ] as const;
 
 /** Projects in display order. */
