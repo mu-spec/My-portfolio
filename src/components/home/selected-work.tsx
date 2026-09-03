@@ -1,3 +1,4 @@
+import { MoreProjectsCta } from "@/components/home/more-projects-cta";
 import { ProjectCard } from "@/components/projects/project-card";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -34,6 +35,13 @@ export function SelectedWork() {
           </li>
         ))}
       </ol>
+
+      {/* Pointer to the full collection. The additional apps themselves are
+          never shown on the homepage — /projects is the only place they
+          appear. */}
+      <div className="mt-6 sm:mt-8">
+        <MoreProjectsCta />
+      </div>
     </Section>
   );
 }
