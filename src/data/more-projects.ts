@@ -41,6 +41,22 @@ export const moreProjects: readonly MoreProject[] = [
       "https://play.google.com/store/apps/details?id=com.virblue.mystudylife&hl=en",
     order: 2,
   },
+  {
+    slug: "home-workout-app",
+    name: "Home Workout App",
+    category: "Health & Fitness",
+    description:
+      "Personalized home workout plans make it easy to train, build strength and stay active without gym equipment. Guided exercises and progress tracking help users follow structured fitness routines and stay consistent.",
+    image: {
+      src: "/images/home-workout-app.png",
+      alt: "Home Workout App portfolio image: three Android phones showing the personalized 4-week plan with weekly workout grids, the guided Donkey Kicks exercise with a follow-along timer, and the target key area screen with Full Body, Arm, Butt, Abs, Leg and Back options.",
+      width: 1536,
+      height: 1024,
+    },
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=homeworkoutapp.homeworkout.fitness.workout.loseweight&hl=en",
+    order: 3,
+  },
 ] as const;
 
 /** Projects in display order. */
