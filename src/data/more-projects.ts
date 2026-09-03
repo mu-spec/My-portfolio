@@ -25,6 +25,22 @@ export const moreProjects: readonly MoreProject[] = [
       "https://play.google.com/store/apps/details?id=com.thinkyeah.smartlockfree&pcampaignid=web_share",
     order: 1,
   },
+  {
+    slug: "my-study-life",
+    name: "My Study Life",
+    category: "Education & Productivity",
+    description:
+      "A student planning app that brings classes, homework, exams and study schedules together in one organized experience. It helps students stay on top of academic responsibilities with structured planning, reminders and study-management tools.",
+    image: {
+      src: "/images/my-study-life.png",
+      alt: "My Study Life portfolio image: three Android phones showing the home screen with a morning greeting and Add task and Add class actions, the day planner timeline for Thursday, 3 September with the Class, Exam, Task, Holiday and Activity legend, and the New Task form with subject, due date, recurrence and details fields.",
+      width: 1536,
+      height: 1024,
+    },
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=com.virblue.mystudylife&hl=en",
+    order: 2,
+  },
 ] as const;
 
 /** Projects in display order. */
