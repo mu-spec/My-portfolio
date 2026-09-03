@@ -185,6 +185,22 @@ export const moreProjects: readonly MoreProject[] = [
       "https://play.google.com/store/apps/details?id=net.pkge.pkge&hl=en",
     order: 11,
   },
+  {
+    slug: "solar-spotter-pv-calculator",
+    name: "Solar Spotter & PV Calculator",
+    category: "Solar Energy & Engineering",
+    description:
+      "An intelligent solar planning app that helps users determine optimal panel orientation, tilt and system requirements using GPS and device sensors. Solar tracking, energy calculations and PV performance tools make it easier to plan and optimize solar installations.",
+    image: {
+      src: "/images/solar-spotter-pv-calculator.png",
+      alt: "Solar Spotter & PV Calculator portfolio image: three Android phones showing the welcome screen with a rooftop solar panel photo and feature icons, the sun path and compass view with panel orientation, tilt, efficiency and annual energy estimates, and the PV calculator screen with system size, a yearly power generation chart, output, panel count and cost results.",
+      width: 1536,
+      height: 1024,
+    },
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=com.expressway.solarspot.yp&hl=en",
+    order: 12,
+  },
 ] as const;
 
 /** Projects in display order. */
