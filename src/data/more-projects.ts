@@ -89,6 +89,22 @@ export const moreProjects: readonly MoreProject[] = [
       "https://play.google.com/store/apps/details?id=com.aiside.triply&hl=en",
     order: 5,
   },
+  {
+    slug: "money-tracker-expense-budget",
+    name: "Money Tracker – Expense & Budget",
+    category: "Finance & Budgeting",
+    description:
+      "A personal finance app that helps users track income and expenses, manage budgets and understand spending through clear financial reports. Multiple accounts, organized transactions and budgeting tools make everyday money management easier.",
+    image: {
+      src: "/images/money-tracker-expense-budget.png",
+      alt: "Money Tracker – Expense & Budget portfolio image: three Android phones showing the records screen with a monthly transaction list, the chart screen with a spending donut chart and top category lists, and the edit screen with a grid of expense category icons.",
+      width: 1536,
+      height: 1024,
+    },
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=com.freeman.moneymanager&hl=en",
+    order: 6,
+  },
 ] as const;
 
 /** Projects in display order. */
