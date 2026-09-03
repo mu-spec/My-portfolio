@@ -153,6 +153,22 @@ export const moreProjects: readonly MoreProject[] = [
       "https://play.google.com/store/apps/details?id=com.opentable&hl=en",
     order: 9,
   },
+  {
+    slug: "interior-ai-home-design",
+    name: "Interior AI – AI Home Design",
+    category: "AI & Interior Design",
+    description:
+      "An AI-powered interior design app that transforms room photos into personalized home design concepts. Users can explore different styles, visualize redesigned spaces and discover creative ideas for their home.",
+    image: {
+      src: "/images/interior-ai-home-design.png",
+      alt: "Interior AI – AI Home Design portfolio image: three Android phones showing the welcome screen with a styled room photo and get started action, the style selection step with a grid of design styles such as Modern, Tropical, Minimalistic, Bohemian, Rustic, Vintage, Baroque, Mediterranean and Cyberpunk, and the result screen with a before and after room comparison, save, regenerate, edit and share actions and a download option.",
+      width: 1536,
+      height: 1024,
+    },
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=com.loop.interiorai&hl=en",
+    order: 10,
+  },
 ] as const;
 
 /** Projects in display order. */
