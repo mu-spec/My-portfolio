@@ -57,6 +57,22 @@ export const moreProjects: readonly MoreProject[] = [
       "https://play.google.com/store/apps/details?id=homeworkoutapp.homeworkout.fitness.workout.loseweight&hl=en",
     order: 3,
   },
+  {
+    slug: "medicare",
+    name: "MEDiCARE",
+    category: "Health, Beauty & Shopping",
+    description:
+      "An integrated health and beauty shopping experience that helps users discover products, exclusive offers and member benefits in one place. A built-in loyalty system lets customers earn points and access personalized rewards and promotions.",
+    image: {
+      src: "/images/medicare.png",
+      alt: "MEDiCARE portfolio image: three Android phones showing the welcome screen with the Love Your Life Club membership promotion, the home screen with loyalty points, a coupon card, a deals carousel and shopping categories, and the member price list with health and beauty products priced in Vietnamese dong.",
+      width: 1536,
+      height: 1024,
+    },
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=vn.medicare.crmapp&hl=en",
+    order: 4,
+  },
 ] as const;
 
 /** Projects in display order. */
