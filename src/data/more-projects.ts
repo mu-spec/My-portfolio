@@ -201,6 +201,22 @@ export const moreProjects: readonly MoreProject[] = [
       "https://play.google.com/store/apps/details?id=com.expressway.solarspot.yp&hl=en",
     order: 12,
   },
+  {
+    slug: "onskin-skincare-scanner",
+    name: "OnSkin – Skincare Scanner",
+    category: "AI Skincare & Ingredient Scanner",
+    description:
+      "An AI-powered skincare and cosmetic scanner that helps users analyze product ingredients and understand whether a product suits their skin. Product scanning, ingredient breakdowns, personalized compatibility insights and skincare recommendations make choosing cosmetics easier.",
+    image: {
+      src: "/images/onskin-skincare-scanner.png",
+      alt: "OnSkin – Skincare Scanner portfolio image: three Android phones showing a product scan of a facial cleanser with a safety score, the ingredient analysis screen with moderate, low and no risk ingredient lists, and the home screen with a UV index, a morning and evening skincare plan and scanner, search, recommendations and skin profile features.",
+      width: 1536,
+      height: 1024,
+    },
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=skin.care.product.scanner.skincare.cosmetic.ingredient.checker&hl=en",
+    order: 13,
+  },
 ] as const;
 
 /** Projects in display order. */
