@@ -169,6 +169,22 @@ export const moreProjects: readonly MoreProject[] = [
       "https://play.google.com/store/apps/details?id=com.loop.interiorai&hl=en",
     order: 10,
   },
+  {
+    slug: "package-tracker-pkge-mobile",
+    name: "Package Tracker – pkge Mobile",
+    category: "Package Tracking & Logistics",
+    description:
+      "An all-in-one package tracking app that helps users monitor domestic and international shipments from multiple carriers. Shipment status updates, delivery estimates and notifications make it easy to follow packages from dispatch to delivery.",
+    image: {
+      src: "/images/package-tracker-pkge-mobile.png",
+      alt: "Package Tracker – pkge Mobile portfolio image: three Android phones showing the welcome screen with supported carrier logos and a world map, the parcels list with shipment tracking numbers, statuses and carriers, and the map view with a delivery route, package cards and an arriving today estimate.",
+      width: 1536,
+      height: 1024,
+    },
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=net.pkge.pkge&hl=en",
+    order: 11,
+  },
 ] as const;
 
 /** Projects in display order. */
