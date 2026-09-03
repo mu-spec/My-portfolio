@@ -73,6 +73,22 @@ export const moreProjects: readonly MoreProject[] = [
       "https://play.google.com/store/apps/details?id=vn.medicare.crmapp&hl=en",
     order: 4,
   },
+  {
+    slug: "triply-ai-trip-planner",
+    name: "Triply – AI Trip Planner",
+    category: "Travel & AI",
+    description:
+      "An AI-powered travel planner that turns destinations and personal interests into organized day-by-day itineraries. Smart routes, interactive maps and saved places help users discover destinations and plan trips more efficiently.",
+    image: {
+      src: "/images/triply-ai-trip-planner.png",
+      alt: "Triply – AI Trip Planner portfolio image: three Android phones showing the spot selection screen with a list of Bali attractions and a Build my trip button, the live map view with numbered spots along a 5-day Bali trip route and a next-up card with directions, and the day-by-day itinerary list for the planned trip.",
+      width: 1536,
+      height: 1024,
+    },
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=com.aiside.triply&hl=en",
+    order: 5,
+  },
 ] as const;
 
 /** Projects in display order. */
